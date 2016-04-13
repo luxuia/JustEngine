@@ -25,6 +25,10 @@
 #include "Utility.h"
 #include "Macros.h"
 
+// Math Relate
+#include "Vector.h"
+#include "Matrix.h"
+
 
 // D3D  Relate
 #include "d3d11.h"

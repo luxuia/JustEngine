@@ -86,7 +86,7 @@
     <ClInclude Include="Hash.h" />
     <ClInclude Include="Macros.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="SceneNode.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="TypeComparable.h" />
     <ClInclude Include="Utility.h" />
