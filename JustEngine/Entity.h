@@ -12,6 +12,7 @@ namespace Base
 
 		static Ptr Create( const std::string &name );
 		Entity( const std::string &name );
+		Entity();
 
 		virtual ~Entity();
 

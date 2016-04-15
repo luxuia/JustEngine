@@ -4,8 +4,13 @@
 #include "pch.h"
 //#include <SFML/Window.hpp>
 #include "GameCore.h"
+#include "GameObject.h"
+#include "Component.h"
+#include "Camera.h"
+#include "MeshRender.h"
 
 using namespace GameCore;
+using namespace Base;
 
 const int MAX_FIX_LOOP_NUM = 5;
 const float FIX_UPDATE_TICK = 1000.f/60.f;
@@ -27,11 +32,6 @@ public:
 
 int _tmain(int argc, wchar_t** argv[])
 {
-	byte a = 1;
-	byte* p = &a;
-
-	byte* p1 = p++;
-	printf( "0x%x 0x%x", p, p1);
 	CREATE_APP( App );
 	return 0;
 }
@@ -39,8 +39,28 @@ int _tmain(int argc, wchar_t** argv[])
 
 
 void App::Start()
-{
+{	
+	auto obj = GameObject::Create( "Camera" );
+	auto camera = Camera::Create();
+	camera->SetPerspective( 100.f, 100.f, 1.f, 1000.f );
+	obj->AddComponent( camera );
 
+	auto node = GameObject::Create( "SquareMesh" );
+	auto mesh = Graphics::MeshRender<MeshP3>();
+	MeshP3 vertices[] = {
+		{ Vector3( -1.f, 1.f, 1.f ) },
+		{ Vector3( 1.f, 1.f, 1.f ) },
+		{ Vector3( -1.f, -1.f, 1.f ) },
+		{ Vector3( 1.f, -1.f, 1.f ) },
+	};
+
+	uint32_t indices[] = {
+		0, 1, 2,
+		1, 3, 2
+	};
+
+	mesh.mMesh = Mesh<MeshP3>::Create( "", vertices, indices);
+	mesh.mMaterial = Graphics::Material::Create( )
 }
 
 void App::CleanUp()

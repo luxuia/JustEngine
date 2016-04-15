@@ -28,6 +28,11 @@ namespace Base
 		GameObject( const std::string& name );
 		virtual ~GameObject();
 
+		virtual void OnEnable();
+		virtual void OnDisable();
+		virtual void Update();
+
+
 		void FreshData();
 
 		Matrix4 GetWorldMatrix() const;

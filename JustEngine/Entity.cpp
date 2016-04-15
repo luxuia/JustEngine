@@ -8,6 +8,11 @@ namespace Base
 		return std::make_shared<Entity>( name );
 	}
 
+	Entity::Entity( ) :mTypeIndex( typeid(Entity) )
+	{
+		SetName( "NoneName" );
+	}
+
 	Entity::Entity( const std::string &name ) :mTypeIndex(typeid(Entity))
 	{
 		SetName( name );

@@ -4,7 +4,7 @@
 
 namespace Base
 {	
-	Component::Component( std::string& name ) : mTypeIdex( typeid(Component) )
+	Component::Component( ) : mTypeIdex( typeid(Component) )
 	{
 	}
 

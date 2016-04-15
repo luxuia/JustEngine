@@ -11,12 +11,14 @@ namespace Base
 		friend class GameObject;
 
 	public:
-		Component( std::string& name );
+		Component();
 		~Component();
 
 		virtual std::type_index GetTypeIndex() const;
 
 		std::shared_ptr<GameObject> GetOwner();
+
+		virtual void Update( float deltaT ) const;
 
 	protected:
 		std::type_index mTypeIdex;

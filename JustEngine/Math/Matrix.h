@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Macros.h"
+#include "../Macros.h"
 #include "Vector.h"
 
 namespace Math
@@ -27,11 +27,11 @@ namespace Math
 
 		Matrix4& operator *(const Matrix4& data);
 
-		static Matrix4 LookAt( Vector4 eye, Vector4 at, Vector4 up );
+		Matrix4& LookAt( Vector3 eye, Vector3 at, Vector3 up );
 
-		static Matrix4 PerspectiveLH( float width, float height, float near, float far );
+		Matrix4& PerspectiveLH( float width, float height, float near, float far );
 
-		static Matrix4 OrthoLH( float width, float height, float neawr, float far );
+		Matrix4& OrthoLH( float width, float height, float neawr, float far );
 
 		
 	};

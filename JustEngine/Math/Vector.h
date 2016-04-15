@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Macros.h"
+#include "../Macros.h"
 
 namespace Math
 {
@@ -157,5 +157,31 @@ namespace Math
 		Vector3 operator * (const float other) const;
 
 		Vector3 operator / (const float other) const;
+	};
+
+	class DLL_EXPORT Vector2
+	{
+	public:
+		union
+		{
+			struct
+			{
+				float x, y;
+			};
+			float f[2];
+			unsigned int u[2];
+		};
+
+		Vector2() : x( 0.0f ), y( 0.0f ) {}
+
+		Vector2( const Vector4 &other ) : x( other.x ), y( other.y ) {}
+
+		Vector2( float value ) : x( value ), y( value ) {}
+
+		Vector2( float value, float w ) : x( value ), y( value ){}
+
+		Vector2( float x, float y, float z ) : x( x ), y( y ) {}
+
+		Vector2( float x, float y, float z, float w ) : x( x ), y( y ) {}
 	};
 }

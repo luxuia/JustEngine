@@ -26,11 +26,12 @@
 #include "Macros.h"
 
 // Math Relate
-#include "Vector.h"
-#include "Matrix.h"
+#include "Math/Vector.h"
+#include "Math/Matrix.h"
 
 
 // D3D  Relate
-#include "d3d11.h"
-#include "d3dcommon.h"
-#include "dxgi.h"
+#include <d3d11.h>
+#include <d3dx11.h>
+#include <d3dcommon.h>
+#include <dxgi.h>

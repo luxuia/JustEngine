@@ -1,4 +1,4 @@
-#include "Macros.h"
+
 #include "Matrix.h"
 #include <string>
 
@@ -91,7 +91,7 @@ namespace Math
 		return M;
 	}
 
-	Matrix4 LookAt( Vector3 eye, Vector3 at, Vector3 up )
+	Matrix4& Matrix4::LookAt( Vector3 eye, Vector3 at, Vector3 up )
 	{
 		Vector3 z = (at - eye).Normalized();
 		
@@ -99,79 +99,81 @@ namespace Math
 
 		Vector3 y = z.CrossProduct( x );
 
-		Matrix4 M;
-		M.m[0][0] = x.x;
-		M.m[1][0] = x.y;
-		M.m[2][0] = x.z;
-		M.m[3][0] = -eye*x;
+		m[0][0] = x.x;
+		m[1][0] = x.y;
+		m[2][0] = x.z;
+		m[3][0] = -eye*x;
 
-		M.m[0][1] = y.x;
-		M.m[1][1] = y.y;
-		M.m[2][1] = y.z;
-		M.m[3][1] = -eye*y;
+		m[0][1] = y.x;
+		m[1][1] = y.y;
+		m[2][1] = y.z;
+		m[3][1] = -eye*y;
 
-		M.m[0][2] = z.x;
-		M.m[1][2] = z.y;
-		M.m[2][2] = z.z;
-		M.m[3][2] = -eye*z;
+		m[0][2] = z.x;
+		m[1][2] = z.y;
+		m[2][2] = z.z;
+		m[3][2] = -eye*z;
 
-		M.m[3][3] = 1.f;
+		m[3][3] = 1.f;
 
-		return M;
+		return *this;
 	}
 
-	Matrix4 PerspectiveLH( float width, float height, float near, float far )
+	Matrix4& Matrix4::PerspectiveLH( float width, float height, float near, float far )
 	{
 		float nearz2, fRange;
-		Matrix4 M;
 
 		nearz2 = near + near;
 		fRange = far / (far - near);
 
-		M.m[0][0] = nearz2 / width;
-		M.m[0][1] = 0.0f;
-		M.m[0][2] = 0.0f;
-		M.m[0][3] = 0.0f;
+		m[0][0] = nearz2 / width;
+		m[0][1] = 0.0f;
+		m[0][2] = 0.0f;
+		m[0][3] = 0.0f;
 
-		M.m[1][0] = 0.0f;
-		M.m[1][1] = nearz2 / height;
-		M.m[1][2] = 0.0f;
-		M.m[1][3] = 0.0f;
+		m[1][0] = 0.0f;
+		m[1][1] = nearz2 / height;
+		m[1][2] = 0.0f;
+		m[1][3] = 0.0f;
 
-		M.m[2][0] = 0.0f;
-		M.m[2][1] = 0.0f;
-		M.m[2][2] = fRange;
-		M.m[2][3] = 1.0f;
+		m[2][0] = 0.0f;
+		m[2][1] = 0.0f;
+		m[2][2] = fRange;
+		m[2][3] = 1.0f;
 
-		M.m[3][0] = 0.0f;
-		M.m[3][1] = 0.0f;
-		M.m[3][2] = -fRange * near;
-		M.m[3][3] = 0.0f;
+		m[3][0] = 0.0f;
+		m[3][1] = 0.0f;
+		m[3][2] = -fRange * near;
+		m[3][3] = 0.0f;
+
+		return *this;
 	}
 
-	Matrix4 OrthoLH( float width, float height, float near, float far )
+	Matrix4& Matrix4::OrthoLH( float width, float height, float near, float far )
 	{
 		float fRange = 1.f / (far - near);
-		Matrix4 M;
-		M.m[0][0] = 2.f / width;
-		M.m[0][1] = 0.0f;
-		M.m[0][2] = 0.0f;
-		M.m[0][3] = 0.0f;
 
-		M.m[1][0] = 0.0f;
-		M.m[1][1] = 2.f / height;
-		M.m[1][2] = 0.0f;
-		M.m[1][3] = 0.0f;
+		m[0][0] = 2.f / width;
+		m[0][1] = 0.0f;
+		m[0][2] = 0.0f;
+		m[0][3] = 0.0f;
 
-		M.m[2][0] = 0.0f;
-		M.m[2][1] = 0.0f;
-		M.m[2][2] = fRange;
-		M.m[2][3] = 0.f;
+		m[1][0] = 0.0f;
+		m[1][1] = 2.f / height;
+		m[1][2] = 0.0f;
+		m[1][3] = 0.0f;
 
-		M.m[3][0] = 0.0f;
-		M.m[3][1] = 0.0f;
-		M.m[3][2] = -fRange * near;
-		M.m[3][3] = 1.f;
+		m[2][0] = 0.0f;
+		m[2][1] = 0.0f;
+		m[2][2] = fRange;
+		m[2][3] = 0.f;
+
+		m[3][0] = 0.0f;
+		m[3][1] = 0.0f;
+		m[3][2] = -fRange * near;
+		m[3][3] = 1.f;
+
+		return *this;
 	}
 
 }
