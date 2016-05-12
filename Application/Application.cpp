@@ -59,8 +59,8 @@ void App::Start()
 		1, 3, 2
 	};
 
-	mesh.mMesh = Mesh<MeshP3>::Create( "", vertices, indices);
-	mesh.mMaterial = Graphics::Material::Create( )
+	mesh.mMesh = Mesh<MeshP3>::Create( "", vertices, ARRAY_NUM(vertices), indices, ARRAY_NUM(indices));
+	mesh.mMaterial = Graphics::Material::Create();
 }
 
 void App::CleanUp()

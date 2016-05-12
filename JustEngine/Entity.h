@@ -14,7 +14,7 @@ namespace Base
 		Entity( const std::string &name );
 		Entity();
 
-		virtual ~Entity();
+		virtual ~Entity() = default;
 
 		virtual std::type_index GetTypeIndex() const;
 

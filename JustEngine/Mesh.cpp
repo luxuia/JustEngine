@@ -3,27 +3,38 @@
 namespace Base
 {
 	template <typename T>
-	Mesh::Ptr Mesh::Create( const std::string& name )
+	std::shared_ptr<Mesh<T>> Mesh<T>::Create( const std::string& name )
 	{
-		return std::make_shared< Mesh<T> >( name, nullptr, nullptr );
+		return std::make_shared< Mesh<T> >( name, nullptr, 0, nullptr, 0);
 	}
 
 	template <typename T>
-	Mesh::Ptr Mesh::Create( const std::string& name, T* vertexData, uint32_t* indexData)
+	std::shared_ptr<Mesh<T>> Mesh<T>::Create( const std::string& name, T* vertexData, int vertexCnt, 
+			uint32_t* indexData, int indexCnt)
 	{
-		return std::make_shared< Mesh<T> >( name, vertexData, indexData );
+		return std::make_shared< Mesh<T> >( name, vertexData, vertexCnt, indexData, indexCnt);
 	}
 
 	template <typename T>
-	Mesh::Mesh( const std::string& name, T* vertextData, uint32_t* indexData ) : Entity(name )
+	Mesh<T>::Mesh( const std::string& name, T* vertextData, int vertexCnt, uint32_t* indexData, int indexCnt) : Entity(name )
 	{
 		if (vertextData != nullptr)
 		{
-			VertexBuffer.SetupBuffer( vertextData );
+			VertexBuffer.SetupBuffer( vertextData, vertexCnt);
 		}
 		if (indexData != nullptr)
 		{
-			IdxBuffer.SetupBuffer( indexData );
+			IdxBuffer.SetupBuffer( indexData, indexCnt);
 		}
 	}
+
+	template<typename T>
+	void Mesh<T>::DeleteBuffer()
+	{
+
+	}
+
+	template DLL_EXPORT class Mesh<MeshP3>;
+	template DLL_EXPORT class Mesh<MeshP3N3>;
+	template DLL_EXPORT class Mesh<MeshP3N3U2>;
 }

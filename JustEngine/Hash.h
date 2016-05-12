@@ -22,17 +22,17 @@ namespace Utility
 
 	template <typename T> inline size_t HashArray( const T* begin, size_t count, size_t init_hash = 2166136261U )
 	{
-		return HashRange( begin, (size_t*)(begin + count), init_hash );
+		return HashRange( (size_t*)begin, (size_t*)(begin + count), init_hash );
 	}
 
-	template<typename T> inline size_t Hash( const T* begin, size_t init_hash = = 2166136261U )
+	template<typename T> inline size_t Hash( const T* begin, size_t init_hash = 2166136261U )
 	{
 		return HashRange( (size_t*)begin, (size_t*)(begin + 1), init_hash );
 	}
 
 	template<typename char> inline size_t HashArray( const char* begin, size_t count, size_t init_hash = 2166136261U )
 	{
-		size_t hash = HashRange( begin, (size_t*)(begin + count), init_hash );
+		size_t hash = HashRange( (size_t*)begin, (size_t*)(begin + count), init_hash );
 
 		//检查这个hash值是否冲突了, 容易冲突的话需要修改方案
 		HASH_CHECK( begin, begin+count, hash );

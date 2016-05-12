@@ -3,24 +3,24 @@
 
 namespace Graphics
 {
-	template<typename T>
+	template<class T>
 	ArrayBuffer<T>::ArrayBuffer( const std::string& name, D3D11_USAGE buff_usage, D3D11_BIND_FLAG bind_flag )
 	{
 		mUsage = buff_usage;
 		mBindFlag = bind_flag;
 	}
 
-	template<typename T> 
-	ArrayBuffer<T>::DeleteBuffer()
+	template<class T> 
+	void ArrayBuffer<T>::DeleteBuffer()
 	{
 		if (Data != nullptr)
 		{
-			delete Data
+			delete Data;
 		}
 	}
 
-	template<typename T> 
-	ArrayBuffer<T>::SetupBuffer( T* data, int dataCount)
+	template<class T> 
+	void ArrayBuffer<T>::SetupBuffer( T* data, int dataCount)
 	{
 		DeleteBuffer();
 
@@ -41,4 +41,14 @@ namespace Graphics
 			//log
 		}
 	}
+
+	template< class T> 
+	void ArrayBuffer<T>::Bind(ID3D11DeviceContext* context)
+	{
+
+	}
+
+	template class ArrayBuffer<int>;
+	template class ArrayBuffer<float>;
+	template class ArrayBuffer<uint32_t>;
 }

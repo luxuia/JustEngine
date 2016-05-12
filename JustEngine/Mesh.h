@@ -10,14 +10,18 @@ namespace Base
 	using namespace Math;
 
 	template<typename T>
-	class DLL_EXPORT Mesh: public Buffer, public Entity
+	class Mesh: public Buffer, public Entity
 	{
 	public :
-		ObjTypePtr( Mesh );
+		ObjTypePtr( Mesh<T> );
 
+		Mesh(const std::string&, T*, int, uint32_t*, int);
+		
 		static Ptr Create( const std::string& name );
 
-		static Ptr Create( const std::string& name, T* vertexData, uint32_t* indexData );
+		static Ptr Create( const std::string& name, T* vertexData, int, uint32_t* indexData, int);
+
+		void DeleteBuffer() override;
 
 		Graphics::ArrayBufferu IdxBuffer;
 		Graphics::ArrayBuffer<T> VertexBuffer;

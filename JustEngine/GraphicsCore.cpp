@@ -97,7 +97,7 @@ void Graphics::Init( void )
 	sd.SampleDesc.Count = 1;
 
 	sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	sd.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
+	sd.SwapEffect = DXGI_SWAP_EFFECT_SEQUENTIAL;
 	sd.OutputWindow = GameCore::g_hWnd;
 	sd.Windowed = true;
 	sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
@@ -115,8 +115,8 @@ void Graphics::Init( void )
 		s_PrimaryDeviceContext->OMSetRenderTargets( 1, &s_PrimaryRenderTargetView, nullptr );
 
 		D3D11_VIEWPORT vp;
-		vp.Width = g_DisplayWidth;
-		vp.Height = g_DisplayHeight;
+		vp.Width = (float)g_DisplayWidth;
+		vp.Height = (float)g_DisplayHeight;
 		vp.MinDepth = 0.0f;
 		vp.MaxDepth = 1.0f;
 		vp.TopLeftX = 0;
@@ -278,6 +278,11 @@ void Graphics::Resize( uint32_t width, uint32_t height )
 
 	s_PrimarySwapChain->ResizeBuffers( SWAP_CHAIN_BUFFER_COUNT, width, height, SpawnChainFormat, DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH );
 
+}
+
+void Graphics::Terminate()
+{
+	
 }
 
 void Graphics::Present()

@@ -2,6 +2,7 @@
 
 #include "Macros.h"
 #include "Shader.h"
+#include "Utility.h"
 
 namespace Graphics
 {
@@ -12,7 +13,9 @@ namespace Graphics
 		//template<typename T> void SetData( T data);
 
 		ObjTypePtr( Material );
+		static Ptr Create();
 
+		Material();
 
 	protected:
 		Shader::Ptr mShader;

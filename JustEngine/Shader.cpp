@@ -4,9 +4,9 @@
 
 namespace Graphics
 {
-	Shader::Ptr Create( const std::string& path, const std::string& shaderModel)
+	Shader::Ptr Create( const std::string& path, const std::string& entryPoint, const std::string& shaderModel)
 	{
-		return std::make_shared<Shader>(path, shaderModel );
+		return std::make_shared<Shader>(path, entryPoint, shaderModel );
 	}
 
 	Shader::Shader( const std::string& path, const std::string& entryPoint, const std::string& shaderModel ) :Entity(path )

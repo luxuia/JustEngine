@@ -128,4 +128,4 @@ if ((bool)(isTrue) && !s_TriggeredWarning){	\
 	std::wstring MakeWStr(const std::string& str);
 
 
-#define ObjTypePtr(T) typedef std::shared_ptr<T> Ptr;
+#define ObjTypePtr(Type) typedef std::shared_ptr<Type> Ptr;

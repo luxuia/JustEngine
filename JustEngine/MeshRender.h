@@ -6,6 +6,8 @@
 
 namespace Graphics
 {
+	using namespace Base;
+
 	template<class T> 
 	class DLL_EXPORT MeshRender  
 	{
@@ -14,7 +16,7 @@ namespace Graphics
 
 		static Ptr Create();
 
-		Base::Mesh<T>::Ptr mMesh;
+		std::shared_ptr<Mesh<T>> mMesh;
 		Material::Ptr mMaterial;
 	};
 }

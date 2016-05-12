@@ -97,6 +97,7 @@ namespace Base
 	bool GameObject::AddComponent( const std::shared_ptr<Component> &ptr )
 	{
 		mComponents.emplace( ptr->GetTypeIndex(), ptr );
+		return true;
 	}
 
 	std::shared_ptr<Component> GameObject::GetComponent( std::type_index type ) const

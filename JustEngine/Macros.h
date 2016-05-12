@@ -17,3 +17,6 @@ const int SWAP_CHAIN_BUFFER_COUNT = 3;
 #define DLL_EXPORT
 
 #endif // end _win32
+
+// static array num
+#define ARRAY_NUM(ARR) sizeof(ARR)/sizeof(ARR[0])
