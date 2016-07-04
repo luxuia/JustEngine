@@ -6,7 +6,7 @@ const int SWAP_CHAIN_BUFFER_COUNT = 3;
 
 #ifdef _WIN32 
 
-#ifdef API_EXPORT
+#ifdef _LIB
 #define DLL_EXPORT __declspec(dllexport)
 #else 
 #define DLL_EXPORT __declspec(dllimport)

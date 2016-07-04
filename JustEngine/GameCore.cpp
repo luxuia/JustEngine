@@ -59,7 +59,7 @@ namespace GameCore
 		return 0;
 	}
 
-	HWND g_hwnd = nullptr;
+	HWND g_hWnd = nullptr;
 
 	void RunApp( IGameApp& app, const wchar_t* className )
 	{
@@ -83,13 +83,13 @@ namespace GameCore
 
 		RECT rect = { 0, 0, 100L, 100L };
 		AdjustWindowRect( &rect, WS_OVERLAPPEDWINDOW, false );
-		g_hwnd = CreateWindow( className, className, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, rect.right - rect.left, rect.bottom - rect.top, nullptr, nullptr, hInst, nullptr );
+		g_hWnd = CreateWindow( className, className, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, rect.right - rect.left, rect.bottom - rect.top, nullptr, nullptr, hInst, nullptr );
 
-		ASSERT( g_hwnd != 0 );
+		ASSERT(g_hWnd != 0 );
 
 		InitializeApp(app);
 
-		ShowWindow( g_hwnd, SW_SHOWDEFAULT );
+		ShowWindow(g_hWnd, SW_SHOWDEFAULT );
 
 		do
 		{

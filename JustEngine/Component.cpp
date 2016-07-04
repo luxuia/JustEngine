@@ -23,6 +23,10 @@ namespace Base
 		return mOwner.lock();
 	}
 
+	void Component::Update(float deltaT) const
+	{
+	}
+
 	void Component::OnAttach( const std::shared_ptr<GameObject> &node )
 	{
 		ASSERT( !mOwner.expired() );

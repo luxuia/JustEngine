@@ -100,6 +100,11 @@ namespace Base
 		return true;
 	}
 
+	bool GameObject::RemoveComponent(const std::shared_ptr<Component>& ptr)
+	{
+		return false;
+	}
+
 	std::shared_ptr<Component> GameObject::GetComponent( std::type_index type ) const
 	{
 		auto it = mComponents.find( type );
@@ -108,6 +113,16 @@ namespace Base
 			return it->second;
 		}
 		return nullptr;
+	}
+
+	void GameObject::RemoveAllComponent()
+	{
+		auto it = mComponents.begin();
+		while (it != mComponents.end()) 
+		{
+			it->second.reset();
+		}
+		mComponents.clear();
 	}
 
 	template<class T>
@@ -124,6 +139,10 @@ namespace Base
 	Matrix4 GameObject::GetLocalMatrix() const
 	{
 		return mLocalMatrix;
+	}
+
+	void GameObject::FreshData()
+	{
 	}
 
 	Matrix4 GameObject::GetWorldMatrix() const

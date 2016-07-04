@@ -291,3 +291,8 @@ void Graphics::Present()
 
 	s_PrimaryDeviceContext->ClearRenderTargetView( s_PrimaryRenderTargetView, new float[4]{ 0.f, 0.f, 0.f, 0.f } );
 }
+
+uint64_t Graphics::GetFrameCount(void)
+{
+	return uint64_t();
+}

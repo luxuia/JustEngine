@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "ArrayBuffer.h"
 #include "GraphicsCore.h"
 
@@ -34,7 +35,6 @@ namespace Graphics
 		db.CPUAccessFlags = 0;
 		D3D11_SUBRESOURCE_DATA InitData = {};
 		InitData.pSysMem = data;
-		
 		HRESULT hr = g_Device->CreateBuffer( &db, &InitData, &pBuffer );
 		if (FAILED( hr ))
 		{
@@ -48,7 +48,10 @@ namespace Graphics
 
 	}
 
-	template class ArrayBuffer<int>;
-	template class ArrayBuffer<float>;
-	template class ArrayBuffer<uint32_t>;
+	template DLL_EXPORT class ArrayBuffer<int>;
+	template DLL_EXPORT class ArrayBuffer<float>;
+	template DLL_EXPORT class ArrayBuffer<uint32_t>;
+	template DLL_EXPORT class ArrayBuffer<Base::MeshP3>;
+	template DLL_EXPORT class ArrayBuffer<Base::MeshP3N3>;
+	template DLL_EXPORT class ArrayBuffer<Base::MeshP3N3U2>;
 }

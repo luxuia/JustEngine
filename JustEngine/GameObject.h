@@ -28,16 +28,16 @@ namespace Base
 		GameObject( const std::string& name );
 		virtual ~GameObject();
 
-		virtual void OnEnable();
-		virtual void OnDisable();
-		virtual void Update();
+		//virtual void OnEnable();
+		//virtual void OnDisable();
+		//virtual void Update();
 
 
 		void FreshData();
 
 		Matrix4 GetWorldMatrix() const;
 		Matrix4 GetLocalMatrix( ) const;
-		Matrix4 GetInvertWorldMatrix( ) const;
+		//Matrix4 GetInvertWorldMatrix( ) const;
 
 		Vector3 GetLocalPosition() const;
 		Vector3 GetWorldPosition() const;
@@ -46,10 +46,10 @@ namespace Base
 		Vector3 GetLocalRotation() const;
 		Vector3 GetWorldRotation() const;
 
-		void SetLocalPosition( Vector3& pos );
-		void SetLocalScale( Vector3& scale );
-		void SetLocalRotate( Vector3& eulerAngle );
-
+		//void SetLocalPosition( Vector3& pos );
+		//void SetLocalScale( Vector3& scale );
+		//void SetLocalRotate( Vector3& eulerAngle );
+		
 		Ptr GetParent() const;
 		
 		void AddChild(const Ptr &node);
@@ -63,9 +63,9 @@ namespace Base
 
 		void RemoveAllChilds();
 
-		void Replace( const Ptr& node );
+		//void Replace( const Ptr& node );
 
-		Ptr FindChild( const std::string &name )const;
+		//Ptr FindChild( const std::string &name )const;
 		Ptr FindChildRecursively( const std::string &name ) const;
 
 		uint32_t GetChildCount() const;

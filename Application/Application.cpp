@@ -15,6 +15,8 @@ using namespace Base;
 const int MAX_FIX_LOOP_NUM = 5;
 const float FIX_UPDATE_TICK = 1000.f/60.f;
 
+#pragma comment(lib, "dxguid.lib")
+
 class App : public IGameApp
 {
 public:

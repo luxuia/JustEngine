@@ -10,8 +10,8 @@ namespace Base
 	public:
 		ObjTypePtr( Serializable );
 
-		virtual bool Load( const void* wrapper ) {};
+		virtual bool Load(const void* wrapper) { return true; };
 
-		virtual bool Save( const void* wrapper ) {};
+		virtual bool Save(const void* wrapper) { return true; };
 	};
 }

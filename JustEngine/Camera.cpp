@@ -5,7 +5,7 @@
 namespace Base
 {
 
-	Camera::Ptr Create()
+	Camera::Ptr Camera::Create()
 	{
 		return std::make_shared<Camera>();
 	}
