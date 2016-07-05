@@ -22,7 +22,7 @@ namespace Graphics
 
 	uint64_t GetFrameCount( void );
 
-	extern std::shared_ptr<ID3D11Device> g_Device;
+	extern ID3D11Device* g_Device;
 	extern D3D_FEATURE_LEVEL g_D3DFertureLevel;
 
 	extern D3D11_SAMPLER_DESC SamplerLinearWrapDesc;

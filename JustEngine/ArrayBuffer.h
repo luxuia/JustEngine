@@ -11,9 +11,9 @@ namespace Graphics
 	public:
 		ArrayBuffer( const std::string& name, D3D11_USAGE buff_usage, D3D11_BIND_FLAG bind_flag );
 		ArrayBuffer() = default;
-		T* Data;
+		T* Data = nullptr;
 
-		int DataCount;
+		int DataCount = 0;
 
 		void SetupBuffer(T* data, int count);
 

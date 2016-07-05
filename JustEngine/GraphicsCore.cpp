@@ -24,7 +24,9 @@ namespace Graphics
 
 	enum eResolution { k720p, k900p, k1080p, k1440p, k2160p }; 
 
-	std::shared_ptr<ID3D11Device> g_Device = nullptr;
+	float* BackGroundColor = new float[4]{ 1.0f, 0.f, 0.f, 1.f };
+
+	ID3D11Device* g_Device = nullptr;
 
 	D3D_FEATURE_LEVEL g_D3DFeatureLevel = D3D_FEATURE_LEVEL_11_0;
 
@@ -83,8 +85,6 @@ void Graphics::Init( void )
 
 	ASSERT( s_PrimarySwapChain == nullptr, "Graphic has already been initialized" );
 
-	ID3D11Device* pDevice;
-
 	// init spawn chain and device
 	DXGI_SWAP_CHAIN_DESC sd = {};
 	sd.BufferCount = SWAP_CHAIN_BUFFER_COUNT;
@@ -103,7 +103,7 @@ void Graphics::Init( void )
 	sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
 	if (SUCCEEDED( D3D11CreateDeviceAndSwapChain( nullptr, USE_WRAP_DRIVER ? D3D_DRIVER_TYPE_HARDWARE:D3D_DRIVER_TYPE_WARP, 
-			nullptr, 0, &g_D3DFeatureLevel, 1, D3D11_SDK_VERSION, &sd, &s_PrimarySwapChain, &pDevice, nullptr, &s_PrimaryDeviceContext ) ))
+			nullptr, 0, &g_D3DFeatureLevel, 1, D3D11_SDK_VERSION, &sd, &s_PrimarySwapChain, &g_Device, nullptr, &s_PrimaryDeviceContext ) ))
 	{
 		Utility::Printf( L"D3D11 hardware found" );
 
@@ -261,10 +261,7 @@ void Graphics::Init( void )
 
 void Graphics::CleanUp()
 {
-	if (g_Device.use_count() > 0)
-	{
-		g_Device.reset();
-	}
+	SAFE_RELEASE(g_Device);
 }
 
 void Graphics::Resize( uint32_t width, uint32_t height )
@@ -289,7 +286,9 @@ void Graphics::Present()
 {
 	ASSERT( s_PrimaryDeviceContext != nullptr );
 
-	s_PrimaryDeviceContext->ClearRenderTargetView( s_PrimaryRenderTargetView, new float[4]{ 0.f, 0.f, 0.f, 0.f } );
+	s_PrimaryDeviceContext->ClearRenderTargetView( s_PrimaryRenderTargetView, BackGroundColor);
+
+	s_PrimarySwapChain->Present(4, 0);
 }
 
 uint64_t Graphics::GetFrameCount(void)

@@ -17,11 +17,17 @@ namespace GameCore
 {
 	void InitializeApp( IGameApp& game )
 	{
-		game.Start();
+		Graphics::Init();
+
+
+
+		//game.Start();
 	}
 
 	void TerminateApp( IGameApp& game )
 	{
+		Graphics::Terminate();
+
 		game.CleanUp();
 	}
 
@@ -30,7 +36,9 @@ namespace GameCore
 		game.Update(1.f/30.f);
 		game.RenderScene();
 
-		return true;
+		Graphics::Present();
+
+		return !game.IsDone();
 	}
 
 
@@ -47,7 +55,7 @@ namespace GameCore
 		}
 
 		case WM_SIZE:
-
+			Graphics::Resize(wParam & 0xFFFFFF, lParam >> 16);
 		case WM_DESTROY:
 			PostQuitMessage( 0 );
 			break;

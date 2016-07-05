@@ -25,6 +25,8 @@ namespace GameCore
 		virtual void RenderScene( void ) = 0;
 
 		virtual void RenderUI( void ) {};
+
+		virtual bool IsDone() { return false; };
 	};
 	
 	void RunApp( IGameApp& app, const wchar_t* className );
