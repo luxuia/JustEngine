@@ -2,7 +2,7 @@
 
 #include "pch.h"
 
-namespace Base
+namespace JustEngine
 {
 	template<class T>
 	class Singleton

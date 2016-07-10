@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "ArrayBuffer.h"
 #include "GraphicsCore.h"
+#include "ClassConfig.h"
 
-namespace Graphics
+namespace JustEngine
 {
 	template<class T>
 	ArrayBuffer<T>::ArrayBuffer( const std::string& name, D3D11_USAGE buff_usage, D3D11_BIND_FLAG bind_flag )
@@ -35,7 +36,7 @@ namespace Graphics
 		db.CPUAccessFlags = 0;
 		D3D11_SUBRESOURCE_DATA InitData = {};
 		InitData.pSysMem = data;
-		HRESULT hr = g_Device->CreateBuffer( &db, &InitData, &pBuffer );
+		HRESULT hr = Graphics::g_Device->CreateBuffer( &db, &InitData, &pBuffer );
 		if (FAILED( hr ))
 		{
 			//log
@@ -51,7 +52,9 @@ namespace Graphics
 	template DLL_EXPORT class ArrayBuffer<int>;
 	template DLL_EXPORT class ArrayBuffer<float>;
 	template DLL_EXPORT class ArrayBuffer<uint32_t>;
-	template DLL_EXPORT class ArrayBuffer<Base::MeshP3>;
-	template DLL_EXPORT class ArrayBuffer<Base::MeshP3N3>;
-	template DLL_EXPORT class ArrayBuffer<Base::MeshP3N3U2>;
+
+	template DLL_EXPORT class ArrayBuffer<MeshP3>;
+	template DLL_EXPORT class ArrayBuffer<MeshP3N3>;
+	template DLL_EXPORT class ArrayBuffer<MeshP3N3U2>;
+
 }

@@ -11,7 +11,7 @@
 
 #include "pch.h"
 #include "GameCore.h"
-
+#include "GraphicsCore.h"
 
 namespace GameCore
 {
@@ -19,9 +19,7 @@ namespace GameCore
 	{
 		Graphics::Init();
 
-
-
-		//game.Start();
+		game.Start();
 	}
 
 	void TerminateApp( IGameApp& game )

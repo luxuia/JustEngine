@@ -5,12 +5,22 @@
 #include "Entity.h"
 #include "ArrayBuffer.h"
 
-namespace Base
+namespace JustEngine
 {
 	using namespace Math;
+	
+	class DLL_EXPORT BaseMesh : public Entity
+	{
+	public:
+		ObjTypePtr(BaseMesh);
+		BaseMesh(const std::string& name) : Entity(name) {};
+
+		virtual bool BindDraw(ID3D11DeviceContext* context) = 0;
+	};
+
 
 	template<typename T>
-	class Mesh: public Buffer, public Entity
+	class DLL_EXPORT Mesh: public BaseMesh
 	{
 	public :
 		ObjTypePtr( Mesh<T> );
@@ -21,27 +31,15 @@ namespace Base
 
 		static Ptr Create( const std::string& name, T* vertexData, int, uint32_t* indexData, int);
 
-		void DeleteBuffer() override;
+		ArrayBufferu IdxBuffer;
+		ArrayBuffer<T> VertexBuffer;
 
-		Graphics::ArrayBufferu IdxBuffer;
-		Graphics::ArrayBuffer<T> VertexBuffer;
-	};
+		//D3D11_INPUT_ELEMENT_DESC* GetInputLayout() override;
+		//int GetInputLayoutSize() override;
+		bool BindDraw(ID3D11DeviceContext* context) override;
 
-	struct MeshP3
-	{
-		Vector3 Position;
-	};
+		const UINT STRIDE = sizeof(T);
+		UINT Offset = 0;
 
-	struct MeshP3N3
-	{
-		Vector3 Position;
-		Vector3 Normal;
-	};
-
-	struct MeshP3N3U2
-	{
-		Vector3 Position;
-		Vector3 Normal;
-		Vector2 UV;
 	};
 }

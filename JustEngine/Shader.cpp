@@ -2,9 +2,11 @@
 #include "d3dcompiler.h"
 #include "GraphicsCore.h"
 
-namespace Graphics
+namespace JustEngine
 {
-	Shader::Ptr Create( const std::string& path, const std::string& entryPoint, const std::string& shaderModel)
+	using namespace Graphics;
+
+	Shader::Ptr Shader::Create( const std::string& path, const std::string& entryPoint, const std::string& shaderModel)
 	{
 		return std::make_shared<Shader>(path, entryPoint, shaderModel );
 	}
@@ -24,7 +26,7 @@ namespace Graphics
 		shaderFlags |= D3DCOMPILE_DEBUG;
 #endif
 		ID3DBlob* errBlob;
-		HRESULT hr = D3DX11CompileFromFileA( path.c_str(), nullptr, nullptr, Shader::SHADER_MAIN_VERTEX, shaderModel.c_str(),
+		HRESULT hr = D3DX11CompileFromFileA( path.c_str(), nullptr, nullptr, Shader::SHADER_MAIN_VERTEX, ("vs"+shaderModel).c_str(),
 			shaderFlags, 0, nullptr, &pBlob, &errBlob, nullptr );
 		if (FAILED( hr ))
 		{
@@ -37,9 +39,18 @@ namespace Graphics
 		}
 
 		g_Device->CreateVertexShader( pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pVertexShader );
+		
+		D3D11_INPUT_ELEMENT_DESC layout[] = {
+			{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA},
+		};
+		UINT numElement = ARRAYSIZE(layout);
+
+		hr = g_Device->CreateInputLayout(layout, numElement, pBlob->GetBufferPointer(),
+									pBlob->GetBufferSize(), &pInputLayout);
+		
 		pBlob->Release();
 
-		hr = D3DX11CompileFromFileA( path.c_str(), nullptr, nullptr, Shader::SHADER_MAIN_PIXEL, shaderModel.c_str(),
+		hr = D3DX11CompileFromFileA( path.c_str(), nullptr, nullptr, Shader::SHADER_MAIN_PIXEL, ("ps"+shaderModel).c_str(),
 			shaderFlags, 0, nullptr, &pBlob, &errBlob, nullptr);
 		if (FAILED( hr ))
 		{

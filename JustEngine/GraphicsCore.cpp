@@ -286,9 +286,11 @@ void Graphics::Present()
 {
 	ASSERT( s_PrimaryDeviceContext != nullptr );
 
-	s_PrimaryDeviceContext->ClearRenderTargetView( s_PrimaryRenderTargetView, BackGroundColor);
-
 	s_PrimarySwapChain->Present(4, 0);
+
+
+	//s_PrimaryDeviceContext->ClearRenderTargetView(s_PrimaryRenderTargetView, BackGroundColor);
+
 }
 
 uint64_t Graphics::GetFrameCount(void)

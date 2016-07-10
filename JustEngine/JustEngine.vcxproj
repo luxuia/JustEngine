@@ -86,6 +86,7 @@
     <ClInclude Include="ArrayBuffer.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ClassConfig.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Frustum.h" />
@@ -100,6 +101,7 @@
     <ClInclude Include="MeshRender.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Serializable.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Singleton.h" />
@@ -119,8 +121,17 @@
     <ClCompile Include="Math\Matrix.cpp" />
     <ClCompile Include="Math\Vector.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MeshRender.cpp" />
     <ClCompile Include="Serializable.cpp" />
     <ClCompile Include="Shader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="JustEngine.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\ShaderLine.fx">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,7 +2,7 @@
 
 #include "pch.h"
 
-namespace Base
+namespace JustEngine
 {
 	// TODO
 	class DLL_EXPORT Serializable

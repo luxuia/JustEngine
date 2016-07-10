@@ -3,7 +3,7 @@
 #include "pch.h"
 #include "TypeComparable.h"
 
-namespace Base
+namespace JustEngine
 {
 	class DLL_EXPORT Entity : public TypeComparable
 	{
@@ -24,10 +24,16 @@ namespace Base
 
 		size_t SetName( const std::string & name );
 
+#if _DEBUG
+	public:
+		std::string mName;
+#else
+	protected:
+		std::string mName;
+#endif
+
 	protected:
 		std::type_index mTypeIndex;
-
-		std::string mName;
 
 		size_t mHashCode;
 	};

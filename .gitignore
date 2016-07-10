@@ -70,3 +70,5 @@ ipch/
 *.psess
 *.vsp
 *.vspx
+*.opendb
+*.db

@@ -1,7 +1,7 @@
 #include "Entity.h"
 #include "Hash.h"
 
-namespace Base
+namespace JustEngine
 {
 	Entity::Ptr Entity::Create( const std::string &name )
 	{

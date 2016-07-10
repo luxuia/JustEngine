@@ -4,7 +4,7 @@
 #include "Component.h"
 #include "Frustum.h"
 
-namespace Base
+namespace JustEngine
 {
 	using namespace Math;
 	class DLL_EXPORT Camera : public Component, public std::enable_shared_from_this<Camera>

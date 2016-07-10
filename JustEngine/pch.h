@@ -29,14 +29,10 @@
 #include "Math/Vector.h"
 #include "Math/Matrix.h"
 
+#include "ClassConfig.h"
+
 // D3D  Relate
 #include <d3d11.h>
 #include <d3dx11.h>
 #include <d3dcommon.h>
 #include <dxgi.h>
-
-
-// Base Framework
-#include "GraphicsCore.h"
-#include "ArrayBuffer.h"
-#include "Mesh.h"

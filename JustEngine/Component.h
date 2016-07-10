@@ -4,13 +4,16 @@
 #include "TypeComparable.h"
 #include "Serializable.h"
 
-namespace Base
+namespace JustEngine
 {
 	class DLL_EXPORT Component :public TypeComparable, public Serializable
 	{
 		friend class GameObject;
 
 	public:
+		ObjTypePtr(Component);
+
+
 		Component();
 		~Component();
 

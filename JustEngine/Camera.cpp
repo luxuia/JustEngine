@@ -2,7 +2,7 @@
 #include "Camera.h"
 #include "Math/Matrix.h"
 
-namespace Base
+namespace JustEngine
 {
 
 	Camera::Ptr Camera::Create()

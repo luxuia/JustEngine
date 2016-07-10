@@ -1,8 +1,7 @@
-#include "pch.h"
 #include "GameObject.h"
-#include "Component.h"
+#include "Utility.h"
 
-namespace Base
+namespace JustEngine
 {
 	GameObject::Ptr GameObject::Create(const std::string& name )
 	{
@@ -12,6 +11,7 @@ namespace Base
 	GameObject::GameObject( const std::string& name ) : Entity( name ), mLocalScale(1.f, 1.f, 1.f)
 	{
 		mTypeIndex = typeid(GameObject);
+		//mComponents = std::unordered_map<std::type_index, std::shared_ptr<Component>>();
 	}
 
 	GameObject::~GameObject()
@@ -60,7 +60,7 @@ namespace Base
 			node = mChilds.back();
 			mChilds.pop_back();
 
-			node->SetParnet( nullptr );
+			node->RemoveFromParent();
 		}
 	}
 
@@ -71,16 +71,22 @@ namespace Base
 		return mChilds[idx];
 	}
 
-	void GameObject::SetParnet(const Ptr& parent )
+	void GameObject::SetParent(const Ptr& parent )
 	{
+		if (mParent.lock() == parent) return;
+		if (mParent.lock()!= nullptr) RemoveFromParent();
+
 		mParent = parent;
-		
+		parent->AddChild(shared_from_this());
 		FreshData();
 	}
 
 	void GameObject::RemoveFromParent()
 	{
-		SetParnet( nullptr );
+		if (mParent.lock() != nullptr)
+		{
+			mParent.lock()->RemoveChild(shared_from_this());
+		}
 	}
 
 	GameObject::Ptr GameObject::FindChildRecursively( const std::string &name ) const
@@ -88,19 +94,24 @@ namespace Base
 		GameObject::Ptr node;
 		for (uint32_t i = 0; i < mChilds.size(); ++i)
 		{
-			node = mChilds[i]->FindChildRecursively( name );
+			if (name == mChilds[i]->GetName())
+			{
+				return mChilds[i];
+			}
+			node = mChilds[i]->FindChildRecursively(name);
 			if (node != nullptr) return node;
 		}
 		return nullptr;
 	}
 
-	bool GameObject::AddComponent( const std::shared_ptr<Component> &ptr )
+	bool GameObject::AddComponent(const Component::Ptr& ptr )
 	{
-		mComponents.emplace( ptr->GetTypeIndex(), ptr );
+		mComponents.emplace(ptr->GetTypeIndex(), ptr);
+
 		return true;
 	}
 
-	bool GameObject::RemoveComponent(const std::shared_ptr<Component>& ptr)
+	bool GameObject::RemoveComponent(const Component::Ptr& ptr)
 	{
 		return false;
 	}
@@ -115,26 +126,29 @@ namespace Base
 		return nullptr;
 	}
 
-	void GameObject::RemoveAllComponent()
-	{
-		auto it = mComponents.begin();
-		while (it != mComponents.end()) 
-		{
-			it->second.reset();
-		}
-		mComponents.clear();
-	}
 
 	template<class T>
 	std::shared_ptr<T> GameObject::GetComponent() const
 	{
-		auto it = mComponents.find( typeid(T) );
+		auto it = mComponents.find(typeid(T));
 		if (it != mComponents.end())
 		{
 			return it->second;
 		}
 		return nullptr;
 	}
+
+	void GameObject::RemoveAllComponent()
+	{
+		auto it = mComponents.begin();
+		while (it != mComponents.end()) 
+		{
+			it->second.reset();
+			it++;
+		}
+		mComponents.clear();
+	}
+
 
 	Matrix4 GameObject::GetLocalMatrix() const
 	{

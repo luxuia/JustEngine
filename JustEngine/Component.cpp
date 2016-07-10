@@ -2,7 +2,7 @@
 #include "Component.h"
 #include "GameObject.h"
 
-namespace Base
+namespace JustEngine
 {	
 	Component::Component( ) : mTypeIdex( typeid(Component) )
 	{

@@ -6,12 +6,13 @@
 #include "pch.h"
 #include "Entity.h"
 #include "Serializable.h"
+#include "Component.h"
+#include "MeshRender.h"
 
-namespace Base
+namespace JustEngine
 {
 	using namespace Math;
 
-	class Component;
 	class OcTreeNode;
 
 	// To destory a scenenode.
@@ -59,7 +60,7 @@ namespace Base
 
 		void RemoveFromParent();
 
-		void SetParnet( const Ptr& parent );
+		void SetParent( const Ptr& parent );
 
 		void RemoveAllChilds();
 
@@ -70,12 +71,11 @@ namespace Base
 
 		uint32_t GetChildCount() const;
 
-		bool AddComponent( const std::shared_ptr<Component> &ptr );
-		bool RemoveComponent( const std::shared_ptr<Component> &ptr );
+		bool AddComponent(const Component::Ptr& ptr);
+		bool RemoveComponent(const Component::Ptr& ptr);
 
 		template<class T>
 		std::shared_ptr<T> GetComponent() const;
-
 		std::shared_ptr<Component> GetComponent( std::type_index type ) const;
 
 		void RemoveAllComponent();
@@ -87,7 +87,7 @@ namespace Base
 
 		std::vector<Ptr> mChilds;
 
-		std::unordered_map<std::type_index, std::shared_ptr<Component>> mComponents;
+		std::unordered_map<std::type_index, Component::Ptr> mComponents;
 
 		Matrix4 mWorldMatrix;
 

@@ -3,7 +3,7 @@
 #include <typeindex>
 #include "pch.h"
 
-namespace Base
+namespace JustEngine
 {
 	class DLL_EXPORT TypeComparable
 	{

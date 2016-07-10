@@ -2,7 +2,7 @@
 
 #include "Macros.h"
 
-namespace Base
+namespace JustEngine
 {
 	class DLL_EXPORT Buffer
 	{
