@@ -56,15 +56,14 @@ void App::Start()
 
 	auto mesh = MeshRender::Create();
 	MeshP3 vertices[] = {
-		{ Vector3(0.5f, 1.f, 1.f) },
-		{ Vector3(1.f, 1.f, 1.f) },
+		{ Vector3(0.5f, 0.5f, 1.f) },
+		{ Vector3(0.5f, -0.5f, 1.f) },
 		{ Vector3(-0.5f, -0.5f, 1.f) },
-		//{ Vector3(1.f, -1.f, 1.f) },
+		{ Vector3(-0.5f, 0.5f, 1.f) },
 	};
 
 	uint32_t indices[] = {
-		0, 1, 2,
-		1, 3, 2
+		1,2,0,3
 	};
 
 	mesh->mMesh = Mesh<MeshP3>::Create("", vertices, ARRAY_NUM(vertices), indices, ARRAY_NUM(indices));

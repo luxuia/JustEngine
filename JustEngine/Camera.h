@@ -38,5 +38,8 @@ namespace JustEngine
 	protected:
 		virtual void OnAttach( const std::shared_ptr<GameObject> &node ) override;
 		virtual void OnDetach( const std::shared_ptr<GameObject> &node ) override;
+
+	private:
+		
 	};
 }
