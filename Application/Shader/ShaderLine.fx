@@ -1,14 +1,34 @@
 
+cbuffer ConstantBuffer : register(b0)
+{
+	matrix World;
+	matrix View;
+	matrix Projection;
+}
+
+struct VS_Output
+{
+	float4 Pos: SV_POSITION;
+	float4 Color: COLOR0;
+};
+
 
 //// Vertex Shader
-float4 VS(float4 Pos: POSITION) : SV_POSITION
+VS_Output VS(float4 Pos: POSITION, float4 Color:COLOR)
 {
-	return Pos;
+	VS_Output output = (VS_Output)0;
+
+	output.Pos = mul(Pos, World);
+	output.Pos = mul(Pos, View);
+	output.Pos = mul(Pos, Projection);
+
+	output.Color = Color;
+	return output;
 }
 
 
 // Pixel Shader
-float4 PS(float4 Pos: SV_POSITION): SV_TARGET
+float4 PS(VS_Output input): SV_TARGET
 {
-	return float4(0.0f, 1.0f, 1.0, 1.0f);
+	return input.Color;
 }

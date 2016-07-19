@@ -4,6 +4,8 @@
 
 namespace Math
 {
+	class Quaternion;
+
 	class DLL_EXPORT Vector4
 	{
 	public :
@@ -157,6 +159,8 @@ namespace Math
 		Vector3 operator * (const float other) const;
 
 		Vector3 operator / (const float other) const;
+
+		Vector3 operator *(const Quaternion other) const;
 	};
 
 	class DLL_EXPORT Vector2

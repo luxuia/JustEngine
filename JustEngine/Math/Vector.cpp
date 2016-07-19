@@ -1,5 +1,6 @@
-#include "Vector.h"
 #include <cmath>
+#include "Quaternion.h"
+#include "Vector.h"
 
 namespace Math
 {

@@ -8,6 +8,8 @@ namespace Math
 	class DLL_EXPORT Matrix4
 	{
 	public:
+		const static Matrix4 identity;
+
 		union
 		{
 			float r[16];
@@ -32,7 +34,5 @@ namespace Math
 		Matrix4& PerspectiveLH( float width, float height, float near, float far );
 
 		Matrix4& OrthoLH( float width, float height, float neawr, float far );
-
-		
 	};
 }

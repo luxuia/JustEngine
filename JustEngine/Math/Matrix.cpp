@@ -4,6 +4,11 @@
 
 namespace Math
 {
+	//const Matrix4 Matrix4::identity = { 1.f, 0.f, 0.f, 0.f,
+	//						0.f, 1.f, 0.f, 0.f,
+	//						0.f, 0.f, 1.f, 0.f,
+	//						0.f, 0.f, 0.f, 1.f };
+
 	Matrix4::Matrix4()
 	{
 	}

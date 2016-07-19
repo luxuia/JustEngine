@@ -16,6 +16,12 @@ namespace JustEngine
 		Vector3 Normal;
 	};
 
+	struct MeshP3C4
+	{
+		Vector3 Position;
+		Vector4 Color;
+	};
+
 	struct MeshP3N3U2
 	{
 		Vector3 Position;

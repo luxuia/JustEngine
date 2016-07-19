@@ -55,18 +55,39 @@ void App::Start()
 	auto node = GameObject::Create("SquareMesh");
 
 	auto mesh = MeshRender::Create();
-	MeshP3 vertices[] = {
-		{ Vector3(0.5f, 0.5f, 1.f) },
-		{ Vector3(0.5f, -0.5f, 1.f) },
-		{ Vector3(-0.5f, -0.5f, 1.f) },
-		{ Vector3(-0.5f, 0.5f, 1.f) },
+	MeshP3C4 vertices[] = {
+		{ Vector3(1.f, 1.f, -1.f), Vector4(0.f, 0.f, 1.f, 1.f)},
+		{ Vector3(1.f, -1.f, -1.f), Vector4(0.f, 0.f, 1.f, 1.f) },
+		{ Vector3(-1.f, -1.f, -1.f), Vector4(0.f, 0.f, 1.f, 1.f) },
+		{ Vector3(-1.f, 1.f, -1.f), Vector4(0.f, 0.f, 1.f, 1.f) },
+
+		{ Vector3(1.f, 1.f, 1.f), Vector4(0.f, 0.f, 1.f, 1.f) },
+		{ Vector3(1.f, -1.f, 1.f), Vector4(0.f, 0.f, 1.f, 1.f) },
+		{ Vector3(-1.f, -1.f, 1.f), Vector4(0.f, 0.f, 1.f, 1.f) },
+		{ Vector3(-1.f, 1.f, 1.f), Vector4(0.f, 0.f, 1.f, 1.f) },
 	};
 
 	uint32_t indices[] = {
-		1,2,0,3
+		0, 1, 2,
+		0, 2, 3,
+
+		0, 3, 7,
+		0, 7, 4,
+
+		0, 4, 5,
+		0, 5, 2,
+
+		6, 2, 1,
+		6, 1, 5,
+
+		6, 2, 3,
+		6, 3, 7,
+
+		6, 7, 4, 
+		6, 4, 5,
 	};
 
-	mesh->mMesh = Mesh<MeshP3>::Create("", vertices, ARRAY_NUM(vertices), indices, ARRAY_NUM(indices));
+	mesh->mMesh = Mesh<MeshP3C4>::Create("", vertices, ARRAY_NUM(vertices), indices, ARRAY_NUM(indices));
 	mesh->mMaterial = Material::Create();
 
 	node->AddComponent(mesh);
@@ -81,7 +102,7 @@ void App::CleanUp()
 
 void App::Update(float deltaTime)
 {
-
+	auto camera = Root->FindChildRecursively("Camera");
 }
 
 void App::RenderScene()

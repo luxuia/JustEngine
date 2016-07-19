@@ -21,6 +21,8 @@ namespace Math
 
 		Vector3 operator*(const Vector3 other);
 
+		Quaternion GetConjudget() const;
+
 		Quaternion operator* (const Quaternion other);
 	};
 

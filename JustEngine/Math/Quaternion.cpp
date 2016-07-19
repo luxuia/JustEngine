@@ -2,7 +2,6 @@
 
 namespace Math
 {
-
 	Quaternion::Quaternion()
 	{
 		a = b = c = d = 0;
@@ -16,10 +15,17 @@ namespace Math
 
 	Vector3 Quaternion::operator*(const Vector3 other)
 	{
-		return Vector3();
+		Quaternion q = { u.CrossProduct(other) + other*v, -u*other };
+		return (q*GetConjudget()).u;
 	}
+
+	Quaternion Quaternion::GetConjudget() const
+	{
+		return{ -u, v };
+	}
+
 	Quaternion Quaternion::operator*(const Quaternion other)
 	{
-		return{ u.CrossProduct(other.u) + other.u*v + u*other.v , v*other.v - u*other.u };
+		return { u.CrossProduct(other.u) + other.u*v + u*other.v , v*other.v - u*other.u };
 	}
 }
