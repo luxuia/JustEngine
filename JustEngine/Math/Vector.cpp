@@ -1,6 +1,7 @@
 #include <cmath>
 #include "Quaternion.h"
 #include "Vector.h"
+#include "Matrix.h"
 
 namespace Math
 {
@@ -12,11 +13,6 @@ namespace Math
 		y = abs( y );
 		z = abs( z );
 		w = 1.f;
-	}
-
-	void Vector4::Zero()
-	{
-		x = y = z = w = 0.0f;
 	}
 
 	void Vector4::Normalize()
@@ -128,7 +124,7 @@ namespace Math
 
 	float Vector4::operator * (Vector4 other) const
 	{
-		return x * other.x + y * other.y + z * other.z;
+		return x * other.x + y * other.y + z * other.z + w*other.w;
 	}
 
 	Vector4 Vector4::operator * (const float other) const
@@ -142,6 +138,16 @@ namespace Math
 		return Vector4( x * i, y * i, z * i, 1.0f );
 	}
 
+	Vector4 Vector4::operator*(const Matrix4 & other) const
+	{
+		Matrix4 trans = other.Transpose();
+		float x = *this * (*(Vector4*)trans.m[0]);
+		float y = *this * (*(Vector4*)trans.m[1]);
+		float z = *this * (*(Vector4*)trans.m[2]);
+		float w = *this * (*(Vector4*)trans.m[3]);
+		return{ x, y, z, w };
+	}
+
 
 
 	void Vector3::Absolute()
@@ -149,11 +155,6 @@ namespace Math
 		x = abs( x );
 		y = abs( y );
 		z = abs( z );
-	}
-
-	void Vector3::Zero()
-	{
-		x = y = z = 0.0f;
 	}
 
 	void Vector3::Normalize()
@@ -276,4 +277,20 @@ namespace Math
 		float i = 1.0f / other;
 		return Vector3( x * i, y * i, z * i);
 	}
+
+	Vector3 Vector3::operator*(const Matrix4& other) const
+	{
+		Matrix4 trans = other.Transpose();
+		float x = *this * (*(Vector3*)trans.m[0]);
+		float y = *this * (*(Vector3*)trans.m[1]);
+		float z = *this * (*(Vector3*)trans.m[2]);
+		return{ x, y,z };
+	}
+
+	const Vector3 Vector3::Zero = { 0, 0, 0 };
+	const Vector3 Vector3::Up = { 0, 1, 0 };
+	const Vector3 Vector3::Left = { -1, 0, 0 };
+	const Vector3 Vector3::Right = { 1, 0, 0 };
+	const Vector3 Vector3::Forward = { 0, 0, 1 };
+	const Vector3 Vector3::Back = { 0, 0, -1 };
 }

@@ -1,6 +1,7 @@
 
 #include "Matrix.h"
 #include <string>
+#include "Vector.h"
 
 namespace Math
 {
@@ -11,6 +12,7 @@ namespace Math
 
 	Matrix4::Matrix4()
 	{
+		memset(r, 0, 16 * sizeof(float));
 	}
 
 	Matrix4::Matrix4( const float* data )
@@ -96,7 +98,7 @@ namespace Math
 		return M;
 	}
 
-	Matrix4& Matrix4::LookAt( Vector3 eye, Vector3 at, Vector3 up )
+	Matrix4 & Math::Matrix4::LookAt(const Vector3 & eye, const Vector3 & at, const Vector3 & up)
 	{
 		Vector3 z = (at - eye).Normalized();
 		

@@ -35,8 +35,15 @@ namespace JustEngine
 
 		ConstantBuffer cb;
 		cb.world.Identity();
-		cb.proj = Matrix4
-		cb.view.Identity();
+		cb.view.LookAt(Vector3(0, 1, -5), Vector3(0, 1, 0), Vector3::Up);
+		cb.proj.PerspectiveLH(400, 400, 1, 100);
+
+		// Test Code
+		Vector4 TestPos = Vector4(1, 1, 1, 1);
+		TestPos = TestPos * cb.world;
+		TestPos = TestPos * cb.view;
+		TestPos = TestPos * cb.proj;
+		Utility::Printf("%f %f %f", TestPos.x, TestPos.y, TestPos.z);
 		context->UpdateSubresource(mpConstantBuffer, NULL, 0, &cb, 0, 0);
 		context->VSSetConstantBuffers(0, 1, &mpConstantBuffer);
 

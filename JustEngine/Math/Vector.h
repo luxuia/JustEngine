@@ -1,10 +1,11 @@
 #pragma once
 
 #include "../Macros.h"
+#include "Matrix.h"
 
 namespace Math
 {
-	class Quaternion;
+
 
 	class DLL_EXPORT Vector4
 	{
@@ -32,8 +33,6 @@ namespace Math
 		Vector4( float x, float y, float z, float w ) : x( x ), y( y ), z( z ), w( w ) {}
 
 		void Absolute();
-
-		void Zero();
 
 		void Normalize();
 
@@ -79,6 +78,8 @@ namespace Math
 		Vector4 operator * (const float other) const;
 
 		Vector4 operator / (const float other) const;
+
+		Vector4 operator *(const Matrix4& other) const;
 	};
 
 	class DLL_EXPORT Vector3
@@ -88,6 +89,9 @@ namespace Math
 		static const Vector3 Right;
 		static const Vector3 Up;
 		static const Vector3 Down;
+		static const Vector3 Zero;
+		static const Vector3 Forward;
+		static const Vector3 Back;
 
 		union
 		{
@@ -112,8 +116,6 @@ namespace Math
 		Vector3( float x, float y, float z, float w ) : x( x ), y( y ), z( z ) {}
 
 		void Absolute();
-
-		void Zero();
 
 		void Normalize();
 
@@ -160,7 +162,7 @@ namespace Math
 
 		Vector3 operator / (const float other) const;
 
-		Vector3 operator *(const Quaternion other) const;
+		Vector3 operator *(const Matrix4& other) const;
 	};
 
 	class DLL_EXPORT Vector2
