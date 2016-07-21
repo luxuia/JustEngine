@@ -87,7 +87,7 @@ namespace GameCore
 
 		ASSERT( 0 != RegisterClassEx( &wcex ), "Unable to register a window" );
 
-		RECT rect = { 0, 0, 100L, 100L };
+		RECT rect = { 0, 0, DEFAULT_RECT_WIDTH, DEFAULT_RECT_HEIGHT };
 		AdjustWindowRect( &rect, WS_OVERLAPPEDWINDOW, false );
 		g_hWnd = CreateWindow( className, className, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, rect.right - rect.left, rect.bottom - rect.top, nullptr, nullptr, hInst, nullptr );
 

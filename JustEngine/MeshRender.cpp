@@ -36,7 +36,7 @@ namespace JustEngine
 		ConstantBuffer cb;
 		cb.world.Identity();
 		cb.view.LookAt(Vector3(0, 1, -5), Vector3(0, 1, 0), Vector3::Up);
-		cb.proj.PerspectiveLH(400, 400, 1, 100);
+		cb.proj.PerspectiveFovLH(3.1415/2, DEFAULT_RECT_WIDTH/DEFAULT_RECT_HEIGHT, 0.01, 100);
 
 		// Test Code
 		Vector4 TestPos = Vector4(1, 1, 1, 1);

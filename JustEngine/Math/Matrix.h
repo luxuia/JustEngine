@@ -32,6 +32,8 @@ namespace Math
 
 		Matrix4& LookAt( const Vector3& eye, const Vector3& at, const Vector3& up );
 
+		Matrix4& PerspectiveFovLH(float fov, float aspect, float near, float far);
+
 		Matrix4& PerspectiveLH( float width, float height, float near, float far );
 
 		Matrix4& OrthoLH( float width, float height, float neawr, float far );

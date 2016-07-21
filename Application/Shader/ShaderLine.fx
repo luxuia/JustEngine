@@ -18,9 +18,9 @@ VS_Output VS(float4 Pos: POSITION, float4 Color:COLOR)
 {
 	VS_Output output = (VS_Output)0;
 
-	output.Pos = mul(Pos, World);
-	output.Pos = mul(output.Pos, View);
-	output.Pos = mul(output.Pos, Projection);
+	output.Pos = mul(World, Pos);
+	output.Pos = mul(View, output.Pos);
+	output.Pos = mul(Projection, output.Pos);
 
 	output.Color = Color;
 	return output;

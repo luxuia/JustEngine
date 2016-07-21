@@ -4,6 +4,9 @@ const bool USE_WRAP_DRIVER = false;
 
 const int SWAP_CHAIN_BUFFER_COUNT = 3;
 
+const int DEFAULT_RECT_WIDTH = 640;
+const int DEFAULT_RECT_HEIGHT = 480;
+
 #ifdef _WIN32 
 
 #ifdef _LIB
