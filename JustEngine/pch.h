@@ -25,10 +25,7 @@
 #include "Utility.h"
 #include "Macros.h"
 
-// Math Relate
-#include "Math/Vector.h"
-#include "Math/Matrix.h"
-
+#include "EnumConfig.h"
 #include "ClassConfig.h"
 
 // D3D  Relate

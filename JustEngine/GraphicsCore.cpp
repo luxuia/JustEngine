@@ -24,7 +24,7 @@ namespace Graphics
 
 	enum eResolution { k720p, k900p, k1080p, k1440p, k2160p }; 
 
-	float* BackGroundColor = new float[4]{ 1.0f, 0.f, 0.f, 1.f };
+	float* BackGroundColor = new float[4]{ .0f, 0.3f, 0.7f, 1.f };
 
 	ID3D11Device* g_Device = nullptr;
 
@@ -289,8 +289,7 @@ void Graphics::Present()
 	s_PrimarySwapChain->Present(4, 0);
 
 
-	//s_PrimaryDeviceContext->ClearRenderTargetView(s_PrimaryRenderTargetView, BackGroundColor);
-
+	s_PrimaryDeviceContext->ClearRenderTargetView(s_PrimaryRenderTargetView, BackGroundColor);
 }
 
 uint64_t Graphics::GetFrameCount(void)

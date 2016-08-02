@@ -22,7 +22,11 @@ namespace Math
 		Matrix4( const float* data );
 		Matrix4( const Matrix4& data );
 
-		void Identity();
+		Matrix4& Identity();
+
+		Matrix4& RotateY(float radian);
+
+		static Matrix4 CreateRotateY(float radian);
 
 		Matrix4 Transpose() const;
 
@@ -34,6 +38,7 @@ namespace Math
 
 		Matrix4& PerspectiveFovLH(float fov, float aspect, float near, float far);
 
+		// this function interface maybe useless? >.<
 		Matrix4& PerspectiveLH( float width, float height, float near, float far );
 
 		Matrix4& OrthoLH( float width, float height, float neawr, float far );

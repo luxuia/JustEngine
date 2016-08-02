@@ -6,11 +6,6 @@
 
 namespace Math
 {
-	//const Matrix4 Matrix4::identity = { 1.f, 0.f, 0.f, 0.f,
-	//						0.f, 1.f, 0.f, 0.f,
-	//						0.f, 0.f, 1.f, 0.f,
-	//						0.f, 0.f, 0.f, 1.f };
-
 	Matrix4::Matrix4()
 	{
 		memset(r, 0, 16 * sizeof(float));
@@ -26,10 +21,29 @@ namespace Math
 		memcpy( r, data.r, 16 * sizeof(float) );
 	}
 
-	void Matrix4::Identity()
+	Matrix4& Matrix4::Identity()
 	{
 		memset( r, 0, 16 *sizeof(float));
 		r[0] = 1.0f; r[5] = 1.0f; r[10] = 1.0f; r[15] = 1.0f;
+
+		return *this;
+	}
+
+	Matrix4 & Matrix4::RotateY(float radian)
+	{
+		return *this * Matrix4::CreateRotateY(radian);
+	}
+
+	Matrix4 Matrix4::CreateRotateY(float radian)
+	{
+		Matrix4 res = Matrix4().Identity();
+		float cosr = cos(radian);
+		float sinr = sin(radian);
+
+		res.m[0][0] = cosr; res.m[0][2] = -sinr;
+		res.m[2][0] = sinr; res.m[2][2] = cosr;
+
+		return res;
 	}
 
 	Matrix4 Matrix4::Invert() const

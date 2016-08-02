@@ -2,16 +2,16 @@
 
 #include "pch.h"
 #include "Component.h"
-#include "Frustum.h"
 
 namespace JustEngine
 {
 	using namespace Math;
+	class Frustum;
 	class DLL_EXPORT Camera : public Component, public std::enable_shared_from_this<Camera>
 	{
 	protected:
 		Matrix4 mProjectionMatrix;
-		Frustum mFrustum;
+		Frustum* mFrustum;
 
 		bool mPerspective = true;
 
@@ -29,7 +29,7 @@ namespace JustEngine
 
 		Matrix4 GetProjectionMatrix() const;
 
-		Frustum GetFrustum() const;
+		Frustum* GetFrustum() const;
 
 		bool IsPerspective() const;
 

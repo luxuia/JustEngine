@@ -1,6 +1,7 @@
 
 #include "Camera.h"
 #include "Math/Matrix.h"
+#include "Frustum.h"
 
 namespace JustEngine
 {
@@ -38,7 +39,7 @@ namespace JustEngine
 		return mProjectionMatrix;
 	}
 
-	Frustum Camera::GetFrustum() const
+	Frustum* Camera::GetFrustum() const
 	{
 		return mFrustum;
 	}

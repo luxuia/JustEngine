@@ -75,16 +75,16 @@ void App::Start()
 		0, 7, 4,
 
 		0, 4, 5,
-		0, 5, 2,
+		0, 5, 1,
 
-		6, 2, 1,
-		6, 1, 5,
+		4, 6, 5,
+		4, 7, 6,
 
-		6, 2, 3,
-		6, 3, 7,
+		1, 6, 2,
+		1, 5, 6,
 
-		6, 7, 4, 
-		6, 4, 5,
+		3, 6, 7,
+		3, 2, 6,
 	};
 
 	mesh->mMesh = Mesh<MeshP3C4>::Create("", vertices, ARRAY_NUM(vertices), indices, ARRAY_NUM(indices));
