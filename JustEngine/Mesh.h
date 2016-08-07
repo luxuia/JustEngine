@@ -92,7 +92,7 @@ namespace JustEngine
 		context->IASetVertexBuffers(0, 1, &VertexBuffer.pBuffer, &STRIDE, &Offset);
 		context->IASetIndexBuffer(IdxBuffer.pBuffer, DXGI_FORMAT_R32_UINT, 0);
 
-		context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+		context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 		context->DrawIndexed(IdxBuffer.DataCount, 0, 0);
 

@@ -23,5 +23,5 @@ namespace JustEngine
 		float GetDistance(Vector3& point) const;
 		Vector3 GetNormal() const;
 		float GetDistance() const;
-	}
+	};
 }

@@ -72,3 +72,5 @@ ipch/
 *.vspx
 *.opendb
 *.db
+
+.vs/

@@ -56,35 +56,35 @@ void App::Start()
 
 	auto mesh = MeshRender::Create();
 	MeshP3C4 vertices[] = {
-		{ Vector3(1.f, 1.f, -1.f), Vector4(0.f, 0.f, 1.f, 1.f)},
-		{ Vector3(1.f, -1.f, -1.f), Vector4(1.f, 0.f, 1.f, 1.f) },
-		{ Vector3(-1.f, -1.f, -1.f), Vector4(0.f, 1.f, 1.f, 1.f) },
-		{ Vector3(-1.f, 1.f, -1.f), Vector4(1.f, 1.f, 1.f, 1.f) },
-
-		{ Vector3(1.f, 1.f, 1.f), Vector4(1.f, 0.f, 0.f, 1.f) },
-		{ Vector3(1.f, -1.f, 1.f), Vector4(0.f, 1.f, 0.f, 1.f) },
-		{ Vector3(-1.f, -1.f, 1.f), Vector4(1.f, 1.f, 0.f, 1.f) },
-		{ Vector3(-1.f, 1.f, 1.f), Vector4(0.f, 0.f, 0.f, 1.f) },
+		{ Vector3(-1.0f, 1.0f, -1.0f),	Vector4(0.0f, 0.0f, 1.0f, 1.0f) },
+		{ Vector3(1.0f, 1.0f, -1.0f),	Vector4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ Vector3(1.0f, 1.0f, 1.0f),	Vector4(0.0f, 1.0f, 1.0f, 1.0f) },
+		{ Vector3(-1.0f, 1.0f, 1.0f),	Vector4(1.0f, 0.0f, 0.0f, 1.0f) },
+							
+		{ Vector3(-1.0f, -1.0f, -1.0f), Vector4(1.0f, 0.0f, 1.0f, 1.0f) },
+		{ Vector3(1.0f, -1.0f, -1.0f),	Vector4(1.0f, 1.0f, 0.0f, 1.0f) },
+		{ Vector3(1.0f, -1.0f, 1.0f),	Vector4(1.0f, 1.0f, 1.0f, 1.0f) },
+		{ Vector3(-1.0f, -1.0f, 1.0f),	Vector4(0.0f, 0.0f, 0.0f, 1.0f) },
 	};
 
 	uint32_t indices[] = {
-		0, 1, 2,
-		0, 2, 3,
+		3,1,0,
+		2,1,3,
 
-		0, 3, 7,
-		0, 7, 4,
+		0,5,4,
+		1,5,0,
 
-		0, 4, 5,
-		0, 5, 1,
+		3,4,7,
+		0,4,3,
 
-		4, 6, 5,
-		4, 7, 6,
+		1,6,5,
+		2,6,1,
 
-		1, 6, 2,
-		1, 5, 6,
+		2,7,6,
+		3,7,2,
 
-		3, 6, 7,
-		3, 2, 6,
+		6,4,5,
+		7,4,6,
 	};
 
 	mesh->mMesh = Mesh<MeshP3C4>::Create("", vertices, ARRAY_NUM(vertices), indices, ARRAY_NUM(indices));

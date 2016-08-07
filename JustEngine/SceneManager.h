@@ -12,8 +12,6 @@ namespace JustEngine
 	public:
 		void InitWorld(float width, float length, float height, int maxDepth);
 
-		void Add
-
 	private:
 		Octree* tree;
 	};
