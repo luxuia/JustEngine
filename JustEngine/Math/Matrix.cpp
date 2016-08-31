@@ -21,6 +21,12 @@ namespace Math
 		memcpy( r, data.r, 16 * sizeof(float) );
 	}
 
+	Matrix4::Matrix4(float v)
+	{
+		memset(r, 0, 16 * sizeof(float));
+		r[0] = r[5] = r[10] = r[15] = v;
+	}
+
 	Matrix4& Matrix4::Identity()
 	{
 		memset( r, 0, 16 *sizeof(float));
@@ -229,4 +235,5 @@ namespace Math
 		return *this;
 	}
 
+	const Matrix4 Matrix4::identity = { 1 };
 }

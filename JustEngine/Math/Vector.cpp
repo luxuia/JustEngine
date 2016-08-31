@@ -293,4 +293,5 @@ namespace Math
 	const Vector3 Vector3::Right = { 1, 0, 0 };
 	const Vector3 Vector3::Forward = { 0, 0, 1 };
 	const Vector3 Vector3::Back = { 0, 0, -1 };
+	const Vector3 Vector3::One = { 1, 1, 1 };
 }

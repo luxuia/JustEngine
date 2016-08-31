@@ -29,7 +29,7 @@ namespace JustEngine
 
 	void Component::OnAttach( const std::shared_ptr<GameObject> &node )
 	{
-		ASSERT( !mOwner.expired() );
+		//ASSERT(!mOwner.expired());
 		mOwner = node;
 	}
 

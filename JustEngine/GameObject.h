@@ -47,9 +47,9 @@ namespace JustEngine
 		Vector3 GetLocalRotation() const;
 		Vector3 GetWorldRotation() const;
 
-		//void SetLocalPosition( Vector3& pos );
-		//void SetLocalScale( Vector3& scale );
-		//void SetLocalRotate( Vector3& eulerAngle );
+		void SetLocalPosition(const Vector3& pos);
+		void SetLocalScale(const Vector3& scale);
+		void SetLocalRotate(const Vector3& eulerAngle);
 		
 		Ptr GetParent() const;
 		
@@ -81,6 +81,7 @@ namespace JustEngine
 		void RemoveAllComponent();
 
 	protected:
+
 		std::weak_ptr<OcTreeNode> mOcTreeNode;
 
 		std::weak_ptr<GameObject> mParent;
@@ -100,6 +101,8 @@ namespace JustEngine
 		Vector3 mWorldPosition;
 		Vector3 mWorldScale;
 		Vector3 mWorldEulerAngle;
+
+		bool mTransformDirty = false;
 	};
 
 }

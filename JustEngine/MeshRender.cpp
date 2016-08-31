@@ -1,5 +1,6 @@
 #include "MeshRender.h"
 #include "GraphicsCore.h"
+#include "GameObject.h"
 
 namespace JustEngine
 {
@@ -37,7 +38,7 @@ namespace JustEngine
 		radian += 0.1f;
 
 		ConstantBuffer cb;
-		cb.world = Matrix4::CreateRotateY(radian);
+		cb.world = mOwner.lock()->GetWorldMatrix();
 		cb.view.LookAt(Vector3(0, 1, -5), Vector3(0, 1, 0), Vector3::Up);
 		cb.proj.PerspectiveFovLH(3.1415f/2, DEFAULT_RECT_WIDTH/DEFAULT_RECT_HEIGHT, 0.01f, 100.f);
 

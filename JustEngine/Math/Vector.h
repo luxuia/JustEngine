@@ -92,6 +92,7 @@ namespace Math
 		static const Vector3 Zero;
 		static const Vector3 Forward;
 		static const Vector3 Back;
+		static const Vector3 One;
 
 		union
 		{

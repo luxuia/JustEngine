@@ -21,6 +21,7 @@ namespace Math
 		Matrix4();
 		Matrix4( const float* data );
 		Matrix4( const Matrix4& data );
+		Matrix4(float);
 
 		Matrix4& Identity();
 

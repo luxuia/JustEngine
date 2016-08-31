@@ -12,6 +12,9 @@ namespace JustEngine
 	{
 		mTypeIndex = typeid(GameObject);
 		//mComponents = std::unordered_map<std::type_index, std::shared_ptr<Component>>();
+		//SetLocalScale(Vector3::One);
+		//SetLocalPosition(Vector3::Zero);
+		//SetLocalRotate(Vector3::Zero);
 	}
 
 	GameObject::~GameObject()
@@ -107,7 +110,7 @@ namespace JustEngine
 	bool GameObject::AddComponent(const Component::Ptr& ptr )
 	{
 		mComponents.emplace(ptr->GetTypeIndex(), ptr);
-
+		ptr->OnAttach(shared_from_this());
 		return true;
 	}
 
@@ -143,24 +146,32 @@ namespace JustEngine
 		auto it = mComponents.begin();
 		while (it != mComponents.end()) 
 		{
+			it->second->OnDetach(shared_from_this());
 			it->second.reset();
 			it++;
 		}
 		mComponents.clear();
 	}
 
-
 	Matrix4 GameObject::GetLocalMatrix() const
 	{
+// 		if (mTransformDirty)
+// 		{
+// 			this->FreshData();
+// 		}
+// 	
 		return mLocalMatrix;
 	}
 
 	void GameObject::FreshData()
 	{
+		mLocalMatrix = Matrix4::identity;
+		mWorldMatrix = Matrix4::identity;
 	}
 
 	Matrix4 GameObject::GetWorldMatrix() const
 	{
+
 		return mWorldMatrix;
 	}
 
@@ -189,5 +200,39 @@ namespace JustEngine
 		return mWorldEulerAngle;
 	}
 
+	void GameObject::SetLocalScale(const Vector3& scale)
+	{
+		if (mTransformDirty || scale != mLocalScale)
+		{
+			mLocalScale = scale;
+			mTransformDirty = true;
+
+			FreshData();
+		}
+	}
+
+	void GameObject::SetLocalRotate(const Vector3& eulerAngle)
+	{
+		if (mTransformDirty || eulerAngle != mLocalEulerAngle)
+		{
+			mLocalEulerAngle = eulerAngle;
+			mTransformDirty = true;
+
+			FreshData();
+		}
+	}
+
+	void GameObject::SetLocalPosition(const Vector3& pos)
+	{
+		if (mTransformDirty || pos != mLocalPosition) 
+		{
+			mLocalPosition = pos;
+			mTransformDirty = true;
+
+
+
+			FreshData();
+		}
+	}
 
 }
