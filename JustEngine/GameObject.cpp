@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include "Utility.h"
+#include "Math/Matrix.h"
 
 namespace JustEngine
 {
@@ -116,6 +117,13 @@ namespace JustEngine
 
 	bool GameObject::RemoveComponent(const Component::Ptr& ptr)
 	{
+		auto index = ptr->GetTypeIndex();
+		auto it = mComponents.find(index);
+		if (it != mComponents.end()) {
+			it->second->OnDetach(shared_from_this());
+			it->second.reset();
+			return true;
+		}
 		return false;
 	}
 
@@ -165,13 +173,15 @@ namespace JustEngine
 
 	void GameObject::FreshData()
 	{
-		mLocalMatrix = Matrix4::identity;
-		mWorldMatrix = Matrix4::identity;
+		if (mTransformDirty) 
+		{
+			mLocalMatrix = Matrix4::Rotate(mLocalRotation) * Matrix4::Scale(mLocalScale) * Matrix4::Transform(mLocalPosition);
+			mWorldMatrix = mLocalMatrix;
+		}
 	}
 
 	Matrix4 GameObject::GetWorldMatrix() const
 	{
-
 		return mWorldMatrix;
 	}
 
@@ -183,9 +193,9 @@ namespace JustEngine
 	{
 		return mLocalScale;
 	}
-	Vector3 GameObject::GetLocalRotation() const
+	Quaternion GameObject::GetLocalRotation() const
 	{
-		return mLocalEulerAngle;
+		return mLocalRotation;
 	}
 	Vector3 GameObject::GetWorldPosition() const
 	{
@@ -195,9 +205,9 @@ namespace JustEngine
 	{
 		return mWorldScale;
 	}
-	Vector3 GameObject::GetWorldRotation() const
+	Quaternion GameObject::GetWorldRotation() const
 	{
-		return mWorldEulerAngle;
+		return mWorldRotation;
 	}
 
 	void GameObject::SetLocalScale(const Vector3& scale)
@@ -211,11 +221,11 @@ namespace JustEngine
 		}
 	}
 
-	void GameObject::SetLocalRotate(const Vector3& eulerAngle)
+	void GameObject::SetLocalRotate(const Quaternion& rotation)
 	{
-		if (mTransformDirty || eulerAngle != mLocalEulerAngle)
+		if (mTransformDirty || mLocalRotation != rotation )
 		{
-			mLocalEulerAngle = eulerAngle;
+			mLocalRotation = rotation;
 			mTransformDirty = true;
 
 			FreshData();
@@ -228,8 +238,6 @@ namespace JustEngine
 		{
 			mLocalPosition = pos;
 			mTransformDirty = true;
-
-
 
 			FreshData();
 		}

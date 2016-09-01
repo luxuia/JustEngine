@@ -3,7 +3,7 @@
 #include "Vector.h"
 #include "Matrix.h"
 
-namespace Math
+namespace JustEngine
 {
 	using namespace std;
 

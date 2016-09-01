@@ -7,7 +7,7 @@
 
 namespace JustEngine
 {
-	using namespace Math;
+	using namespace JustEngine;
 	
 	class DLL_EXPORT BaseMesh : public Entity
 	{

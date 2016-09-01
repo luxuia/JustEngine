@@ -3,7 +3,7 @@
 #include "../Macros.h"
 #include "Matrix.h"
 
-namespace Math
+namespace JustEngine
 {
 
 

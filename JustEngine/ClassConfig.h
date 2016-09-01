@@ -3,7 +3,7 @@
 
 namespace JustEngine
 {
-	using namespace Math;
+	using namespace JustEngine;
 
 	struct MeshP3
 	{

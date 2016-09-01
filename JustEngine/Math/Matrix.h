@@ -2,9 +2,11 @@
 
 #include "../Macros.h"
 
-namespace Math
+namespace JustEngine
 {
 	class Vector3;
+	class Quaternion;
+
 	class DLL_EXPORT Matrix4
 	{
 	public:
@@ -26,6 +28,10 @@ namespace Math
 		Matrix4& Identity();
 
 		Matrix4& RotateY(float radian);
+
+		static Matrix4 Rotate(Quaternion& quat);
+		static Matrix4 Transform(Vector3& pos);
+		static Matrix4 Scale(Vector3& scale);
 
 		static Matrix4 CreateRotateY(float radian);
 

@@ -3,7 +3,7 @@
 #include "../Macros.h"
 #include "Vector.h"
 
-namespace Math
+namespace JustEngine
 {
 	class DLL_EXPORT Quaternion
 	{
@@ -17,6 +17,7 @@ namespace Math
 		
 		Quaternion();
 
+		Quaternion(float x, float y, float z, float w);
 		Quaternion(Vector3 u, float v);
 
 		Vector3 operator*(const Vector3 other);
@@ -24,6 +25,10 @@ namespace Math
 		Quaternion GetConjudget() const;
 
 		Quaternion operator* (const Quaternion other);
+
+		bool operator==(const Quaternion& other);
+		bool operator!=(const Quaternion& other);
+		Quaternion& operator=(const Quaternion& other);
 	};
 
 }

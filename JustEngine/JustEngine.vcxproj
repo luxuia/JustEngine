@@ -99,6 +99,7 @@
     <ClInclude Include="Hash.h" />
     <ClInclude Include="Macros.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="MathUtil.h" />
     <ClInclude Include="Math\Matrix.h" />
     <ClInclude Include="Math\Quaternion.h" />
     <ClInclude Include="Math\Vector.h" />
@@ -127,6 +128,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphicsCore.cpp" />
     <ClCompile Include="Material.cpp" />
+    <ClCompile Include="MathUtil.cpp" />
     <ClCompile Include="Math\Matrix.cpp" />
     <ClCompile Include="Math\Quaternion.cpp" />
     <ClCompile Include="Math\Vector.cpp" />

@@ -5,7 +5,7 @@
 
 namespace JustEngine
 {
-	using namespace Math;
+	using namespace JustEngine;
 	class Frustum;
 	class DLL_EXPORT Camera : public Component, public std::enable_shared_from_this<Camera>
 	{

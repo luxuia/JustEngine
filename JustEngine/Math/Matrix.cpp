@@ -3,8 +3,9 @@
 #include <string>
 #include <cmath>
 #include "Vector.h"
+#include "Quaternion.h"
 
-namespace Math
+namespace JustEngine
 {
 	Matrix4::Matrix4()
 	{
@@ -38,6 +39,46 @@ namespace Math
 	Matrix4 & Matrix4::RotateY(float radian)
 	{
 		return *this * Matrix4::CreateRotateY(radian);
+	}
+
+	Matrix4 Matrix4::Rotate(Quaternion & rotation)
+	{
+		Matrix4 mat = Matrix4(1);
+
+		float ww = 2.0f * rotation.d;
+		float xx = 2.0f * rotation.a;
+		float yy = 2.0f * rotation.b;
+		float zz = 2.0f * rotation.c;
+
+		mat.r[0] = 1.0f - yy * rotation.b - zz * rotation.c;
+		mat.r[1] = xx * rotation.b + ww * rotation.c;
+		mat.r[2] = xx * rotation.c - ww * rotation.b;
+		mat.r[4] = xx * rotation.b - ww * rotation.c;
+		mat.r[5] = 1.0f - xx * rotation.a - zz * rotation.c;
+		mat.r[6] = yy * rotation.c + ww * rotation.a;
+		mat.r[8] = xx * rotation.c + ww * rotation.b;
+		mat.r[9] = yy * rotation.c - ww * rotation.a;
+		mat.r[10] = 1.0f - xx * rotation.a - yy * rotation.b;
+
+		return mat;
+	}
+
+	Matrix4 Matrix4::Transform(Vector3 & pos)
+	{
+		Matrix4 mat = Matrix4(1);
+		mat.r[12] = pos.x;
+		mat.r[13] = pos.y;
+		mat.r[14] = pos.z;
+		return mat;
+	}
+
+	Matrix4 Matrix4::Scale(Vector3 & scale)
+	{
+		Matrix4 mat = Matrix4(1);
+		mat.r[0] = scale.x;
+		mat.r[5] = scale.y;
+		mat.r[10] = scale.z;
+		return mat;
 	}
 
 	Matrix4 Matrix4::CreateRotateY(float radian)
@@ -119,7 +160,7 @@ namespace Math
 		return M;
 	}
 
-	Matrix4 & Math::Matrix4::LookAt(const Vector3 & eye, const Vector3 & at, const Vector3 & up)
+	Matrix4 & JustEngine::Matrix4::LookAt(const Vector3 & eye, const Vector3 & at, const Vector3 & up)
 	{
 		Vector3 z = (at - eye).Normalized();
 		

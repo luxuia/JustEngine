@@ -8,11 +8,10 @@
 #include "Serializable.h"
 #include "Component.h"
 #include "MeshRender.h"
+#include "Math/Quaternion.h"
 
 namespace JustEngine
 {
-	using namespace Math;
-
 	class OcTreeNode;
 
 	// To destory a scenenode.
@@ -44,12 +43,12 @@ namespace JustEngine
 		Vector3 GetWorldPosition() const;
 		Vector3 GetLocalScale() const;
 		Vector3 GetWorldScale() const;
-		Vector3 GetLocalRotation() const;
-		Vector3 GetWorldRotation() const;
+		Quaternion GetLocalRotation() const;
+		Quaternion GetWorldRotation() const;
 
 		void SetLocalPosition(const Vector3& pos);
 		void SetLocalScale(const Vector3& scale);
-		void SetLocalRotate(const Vector3& eulerAngle);
+		void SetLocalRotate(const Quaternion& rotation);
 		
 		Ptr GetParent() const;
 		
@@ -96,11 +95,11 @@ namespace JustEngine
 
 		Vector3 mLocalPosition;
 		Vector3 mLocalScale;
-		Vector3 mLocalEulerAngle;
+		Quaternion mLocalRotation;
 
 		Vector3 mWorldPosition;
 		Vector3 mWorldScale;
-		Vector3 mWorldEulerAngle;
+		Quaternion mWorldRotation;
 
 		bool mTransformDirty = false;
 	};
