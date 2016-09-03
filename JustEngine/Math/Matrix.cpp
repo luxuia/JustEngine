@@ -136,7 +136,7 @@ namespace JustEngine
 		return Matrix4( data );
 	}
 
-	Matrix4& Matrix4::operator*(const Matrix4& data)
+	Matrix4 Matrix4::operator*(const Matrix4& data)
 	{
 		Matrix4 M;
 

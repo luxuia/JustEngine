@@ -109,6 +109,12 @@ void App::RenderScene()
 {
 	auto mesh = Root->FindChildRecursively("SquareMesh");
 
+	static float radian = 0;
+	radian += 0.1f;
+
+	Quaternion quat = Quaternion(0, sin(radian / 2), 0, cos(radian / 2));
+	mesh->SetLocalRotate(quat);
+
 	auto renderer = mesh->GetComponent(typeid(MeshRender));
 
 	std::dynamic_pointer_cast<MeshRender>(renderer)->Render();

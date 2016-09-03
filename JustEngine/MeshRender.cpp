@@ -34,20 +34,18 @@ namespace JustEngine
 		ID3D11DeviceContext* context = nullptr;
 		g_Device->GetImmediateContext(&context);
 
-		static float radian = 0;
-		radian += 0.1f;
 
 		ConstantBuffer cb;
 		cb.world = mOwner.lock()->GetWorldMatrix();
 		cb.view.LookAt(Vector3(0, 1, -5), Vector3(0, 1, 0), Vector3::Up);
 		cb.proj.PerspectiveFovLH(3.1415f/2, DEFAULT_RECT_WIDTH/DEFAULT_RECT_HEIGHT, 0.01f, 100.f);
 
-		// Test Code
-		Vector4 TestPos = Vector4(1, 1, 1, 1);
-		TestPos = TestPos * cb.world;
-		TestPos = TestPos * cb.view;
-		TestPos = TestPos * cb.proj;
-		Utility::Printf("%f %f %f", TestPos.x, TestPos.y, TestPos.z);
+		//// Test Code
+		//Vector4 TestPos = Vector4(1, 1, 1, 1);
+		//TestPos = TestPos * cb.world;
+		//TestPos = TestPos * cb.view;
+		//TestPos = TestPos * cb.proj;
+		//Utility::Printf("%f %f %f", TestPos.x, TestPos.y, TestPos.z);
 		context->UpdateSubresource(mpConstantBuffer, NULL, 0, &cb, 0, 0);
 		context->VSSetConstantBuffers(0, 1, &mpConstantBuffer);
 

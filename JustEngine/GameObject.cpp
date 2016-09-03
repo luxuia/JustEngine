@@ -120,7 +120,6 @@ namespace JustEngine
 		auto index = ptr->GetTypeIndex();
 		auto it = mComponents.find(index);
 		if (it != mComponents.end()) {
-			it->second->OnDetach(shared_from_this());
 			it->second.reset();
 			return true;
 		}
@@ -154,7 +153,7 @@ namespace JustEngine
 		auto it = mComponents.begin();
 		while (it != mComponents.end()) 
 		{
-			it->second->OnDetach(shared_from_this());
+			// component will auto destroyed when share_ptr's reference count down to zero
 			it->second.reset();
 			it++;
 		}

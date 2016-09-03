@@ -39,7 +39,7 @@ namespace JustEngine
 
 		Matrix4 Invert() const;
 
-		Matrix4& operator *(const Matrix4& data);
+		Matrix4 operator *(const Matrix4& data);
 
 		Matrix4& LookAt( const Vector3& eye, const Vector3& at, const Vector3& up );
 
