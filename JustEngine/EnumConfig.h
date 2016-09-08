@@ -2,7 +2,7 @@
 
 namespace JustEngine
 {
-	enum Side
+	enum class Side
 	{
 		In,
 		Out,

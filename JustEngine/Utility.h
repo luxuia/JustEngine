@@ -1,7 +1,5 @@
 #pragma once
 
-#include "pch.h"
-
 namespace Utility
 {
 	inline void Print(const char* msg) { printf(msg); }
