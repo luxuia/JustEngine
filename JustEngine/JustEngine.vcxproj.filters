@@ -18,168 +18,171 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Macros.h">
+    <ClInclude Include="Include\ArrayBuffer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Utility.h">
+    <ClInclude Include="Include\BoxBounds.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="Include\Buffer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="GameCore.h">
+    <ClInclude Include="Include\ClassConfig.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="GraphicsCore.h">
+    <ClInclude Include="Include\Camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Singleton.h">
+    <ClInclude Include="Include\Collidable.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="TypeComparable.h">
+    <ClInclude Include="Include\Component.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
+    <ClInclude Include="Include\Debug.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Hash.h">
+    <ClInclude Include="Include\Entity.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Component.h">
+    <ClInclude Include="Include\FbxParser.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
+    <ClInclude Include="Include\Frustum.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Serializable.h">
+    <ClInclude Include="Include\GameCore.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="Include\GameObject.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Vector.h">
+    <ClInclude Include="Include\GraphicsCore.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Frustum.h">
+    <ClInclude Include="Include\Hash.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Buffer.h">
+    <ClInclude Include="Include\Macros.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
+    <ClInclude Include="Include\Material.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ArrayBuffer.h">
+    <ClInclude Include="Include\MathUtil.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
+    <ClInclude Include="Include\Mesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Material.h">
+    <ClInclude Include="Include\MeshRender.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="MeshRender.h">
+    <ClInclude Include="Include\pch.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ClassConfig.h">
+    <ClInclude Include="Include\Plane.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
+    <ClInclude Include="Include\resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Debug.h">
+    <ClInclude Include="Include\SceneManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
+    <ClInclude Include="Include\SceneNode.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SceneNode.h">
+    <ClInclude Include="Include\Serializable.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Matrix.h">
+    <ClInclude Include="Include\Shader.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Quaternion.h">
+    <ClInclude Include="Include\Singleton.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Collidable.h">
+    <ClInclude Include="Include\TypeComparable.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="BoxBounds.h">
+    <ClInclude Include="Include\Utility.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Plane.h">
+    <ClInclude Include="Include\EnumConfig.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="EnumConfig.h">
+    <ClInclude Include="Include\Matrix.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="MathUtil.h">
+    <ClInclude Include="Include\Quaternion.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="FbxParser.h">
+    <ClInclude Include="Include\Vector.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameCore.cpp">
+    <ClCompile Include="Src\BoxBounds.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="GraphicsCore.cpp">
+    <ClCompile Include="Src\Camera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
+    <ClCompile Include="Src\Component.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Serializable.cpp">
+    <ClCompile Include="Src\Debug.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
+    <ClCompile Include="Src\Entity.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Component.cpp">
+    <ClCompile Include="Src\FbxParser.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
+    <ClCompile Include="Src\Frustum.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Matrix.cpp">
+    <ClCompile Include="Src\GameCore.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Vector.cpp">
+    <ClCompile Include="Src\GameObject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Frustum.cpp">
+    <ClCompile Include="Src\GraphicsCore.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
+    <ClCompile Include="Src\Material.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Material.cpp">
+    <ClCompile Include="Src\MathUtil.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="MeshRender.cpp">
+    <ClCompile Include="Src\MeshRender.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Quaternion.cpp">
+    <ClCompile Include="Src\Plane.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Debug.cpp">
+    <ClCompile Include="Src\SceneManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
+    <ClCompile Include="Src\Serializable.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="BoxBounds.cpp">
+    <ClCompile Include="Src\Shader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Plane.cpp">
+    <ClCompile Include="Src\Mesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="MathUtil.cpp">
+    <ClCompile Include="Src\Matrix.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="FbxParser.cpp">
+    <ClCompile Include="Src\Quaternion.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Vector.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

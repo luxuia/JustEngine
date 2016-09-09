@@ -8,7 +8,7 @@
 #include "Serializable.h"
 #include "Component.h"
 #include "MeshRender.h"
-#include "Math/Quaternion.h"
+#include "Quaternion.h"
 
 namespace JustEngine
 {

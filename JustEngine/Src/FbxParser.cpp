@@ -75,7 +75,7 @@ namespace JustEngine
 		FbxMesh* fbxMesh = static_cast<FbxMesh*>(fbxNode->GetNodeAttribute());
 
 
-		return nullptr;
+		return mesh;
 	}
 
 }

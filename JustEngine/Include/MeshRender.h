@@ -4,7 +4,7 @@
 #include "Mesh.h"
 #include "Material.h"
 #include "Component.h"
-#include "Math/Matrix.h"
+#include "Matrix.h"
 
 namespace JustEngine
 {

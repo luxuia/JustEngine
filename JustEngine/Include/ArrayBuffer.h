@@ -16,11 +16,15 @@ namespace JustEngine
 
 		int DataCount = 0;
 
-		void SetupBuffer(T* data, int count);
+		bool UpdateBuffer() override;
 
 		void Bind( ID3D11DeviceContext* context );
 
 		virtual void DeleteBuffer() override;
+
+		void* GetBuffer();
+
+		const UINT Stride = sizeof(T);
 
 		ID3D11Buffer* pBuffer;
 	protected:
@@ -47,25 +51,30 @@ namespace JustEngine
 	}
 
 	template<class T>
-	void ArrayBuffer<T>::SetupBuffer(T* data, int dataCount)
+	bool ArrayBuffer<T>::UpdateBuffer()
 	{
-		DeleteBuffer();
-
-		Data = data;
-		DataCount = dataCount;
+		if (Data == nullptr) return false;
 
 		D3D11_BUFFER_DESC db = {};
 		db.Usage = mUsage;
-		db.ByteWidth = sizeof(T)*dataCount;
+		db.ByteWidth = sizeof(T)*DataCount;
 		db.BindFlags = mBindFlag;
 		db.CPUAccessFlags = 0;
 		D3D11_SUBRESOURCE_DATA InitData = {};
-		InitData.pSysMem = data;
+		InitData.pSysMem = Data;
 		HRESULT hr = Graphics::g_Device->CreateBuffer(&db, &InitData, &pBuffer);
 		if (FAILED(hr))
 		{
 			//log
+			return false;
 		}
+		return true;
+	}
+
+	template<class T>
+	void* ArrayBuffer<T>::GetBuffer()
+	{
+		return pBuffer;
 	}
 
 	template< class T>

@@ -52,7 +52,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\fbx_sdk\include;$(SolutionDir)3rdParty\rapidjson\include;$(DXSDK_DIR)Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\VS\JustEngine\JustEngine\Include;$(SolutionDir)3rdParty\fbx_sdk\include;$(SolutionDir)3rdParty\rapidjson\include;$(DXSDK_DIR)Include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -83,62 +83,63 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ArrayBuffer.h" />
-    <ClInclude Include="BoxBounds.h" />
-    <ClInclude Include="Buffer.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="ClassConfig.h" />
-    <ClInclude Include="Collidable.h" />
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="Debug.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="EnumConfig.h" />
-    <ClInclude Include="FbxParser.h" />
-    <ClInclude Include="Frustum.h" />
-    <ClInclude Include="GameCore.h" />
-    <ClInclude Include="GraphicsCore.h" />
-    <ClInclude Include="Hash.h" />
-    <ClInclude Include="Macros.h" />
-    <ClInclude Include="Material.h" />
-    <ClInclude Include="MathUtil.h" />
-    <ClInclude Include="Math\Matrix.h" />
-    <ClInclude Include="Math\Quaternion.h" />
-    <ClInclude Include="Math\Vector.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="MeshRender.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="Plane.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="SceneNode.h" />
-    <ClInclude Include="Serializable.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="Singleton.h" />
-    <ClInclude Include="TypeComparable.h" />
-    <ClInclude Include="Utility.h" />
+    <ClInclude Include="Include\ArrayBuffer.h" />
+    <ClInclude Include="Include\BoxBounds.h" />
+    <ClInclude Include="Include\Buffer.h" />
+    <ClInclude Include="Include\Camera.h" />
+    <ClInclude Include="Include\ClassConfig.h" />
+    <ClInclude Include="Include\Collidable.h" />
+    <ClInclude Include="Include\Component.h" />
+    <ClInclude Include="Include\Debug.h" />
+    <ClInclude Include="Include\Entity.h" />
+    <ClInclude Include="Include\EnumConfig.h" />
+    <ClInclude Include="Include\FbxParser.h" />
+    <ClInclude Include="Include\Frustum.h" />
+    <ClInclude Include="Include\GameCore.h" />
+    <ClInclude Include="Include\GraphicsCore.h" />
+    <ClInclude Include="Include\Hash.h" />
+    <ClInclude Include="Include\Macros.h" />
+    <ClInclude Include="Include\Material.h" />
+    <ClInclude Include="Include\MathUtil.h" />
+    <ClInclude Include="Include\Matrix.h" />
+    <ClInclude Include="Include\Quaternion.h" />
+    <ClInclude Include="Include\Vector.h" />
+    <ClInclude Include="Include\Mesh.h" />
+    <ClInclude Include="Include\MeshRender.h" />
+    <ClInclude Include="Include\pch.h" />
+    <ClInclude Include="Include\GameObject.h" />
+    <ClInclude Include="Include\Plane.h" />
+    <ClInclude Include="Include\resource.h" />
+    <ClInclude Include="Include\SceneManager.h" />
+    <ClInclude Include="Include\SceneNode.h" />
+    <ClInclude Include="Include\Serializable.h" />
+    <ClInclude Include="Include\Shader.h" />
+    <ClInclude Include="Include\Singleton.h" />
+    <ClInclude Include="Include\TypeComparable.h" />
+    <ClInclude Include="Include\Utility.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BoxBounds.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Component.cpp" />
-    <ClCompile Include="Debug.cpp" />
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="FbxParser.cpp" />
-    <ClCompile Include="Frustum.cpp" />
-    <ClCompile Include="GameCore.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GraphicsCore.cpp" />
-    <ClCompile Include="Material.cpp" />
-    <ClCompile Include="MathUtil.cpp" />
-    <ClCompile Include="Math\Matrix.cpp" />
-    <ClCompile Include="Math\Quaternion.cpp" />
-    <ClCompile Include="Math\Vector.cpp" />
-    <ClCompile Include="MeshRender.cpp" />
-    <ClCompile Include="Plane.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Serializable.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Src\BoxBounds.cpp" />
+    <ClCompile Include="Src\Camera.cpp" />
+    <ClCompile Include="Src\Component.cpp" />
+    <ClCompile Include="Src\Debug.cpp" />
+    <ClCompile Include="Src\Entity.cpp" />
+    <ClCompile Include="Src\FbxParser.cpp" />
+    <ClCompile Include="Src\Frustum.cpp" />
+    <ClCompile Include="Src\GameCore.cpp" />
+    <ClCompile Include="Src\GameObject.cpp" />
+    <ClCompile Include="Src\GraphicsCore.cpp" />
+    <ClCompile Include="Src\Material.cpp" />
+    <ClCompile Include="Src\MathUtil.cpp" />
+    <ClCompile Include="Src\Matrix.cpp" />
+    <ClCompile Include="Src\Quaternion.cpp" />
+    <ClCompile Include="Src\Vector.cpp" />
+    <ClCompile Include="Src\Mesh.cpp" />
+    <ClCompile Include="Src\MeshRender.cpp" />
+    <ClCompile Include="Src\Plane.cpp" />
+    <ClCompile Include="Src\SceneManager.cpp" />
+    <ClCompile Include="Src\Serializable.cpp" />
+    <ClCompile Include="Src\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="JustEngine.rc" />
