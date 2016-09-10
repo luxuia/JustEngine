@@ -2,8 +2,8 @@
 
 #include <cmath>
 
-#include "Math/Quaternion.h"
-#include "Math/Vector.h"
+#include "Quaternion.h"
+#include "Vector.h"
 
 namespace JustEngine
 {

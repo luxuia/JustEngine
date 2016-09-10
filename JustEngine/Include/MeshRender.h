@@ -24,7 +24,7 @@ namespace JustEngine
 
 		static Ptr Create();
 
-		std::shared_ptr<BaseMesh> mMesh;
+		std::shared_ptr<Mesh> mMesh;
 		Material::Ptr mMaterial;
 
 		ID3D11InputLayout* mVertexLayout;

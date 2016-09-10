@@ -3,6 +3,7 @@
 #include "Buffer.h"
 
 #include <vector>
+#include "..\Include\Mesh.h"
 
 namespace JustEngine
 {
@@ -18,22 +19,36 @@ namespace JustEngine
 	
 	}
 
+	void Mesh::SetupBuffers(UINT * idxData, UINT idxCount, Vector3 * posData, UINT posCount, Vector4 * colorData, UINT colorCount)
+	{
+		IdxBuffer.Data = idxData;
+		IdxBuffer.DataCount = idxCount;
+
+		PositionBuffer.Data = posData;
+		PositionBuffer.DataCount = posCount;
+
+		ColorBuffer.Data = colorData;
+		ColorBuffer.DataCount = colorCount;
+
+		UpdateBuffer();
+	}
+
 	void Mesh::UpdateBuffer()
 	{
 		IdxBuffer.UpdateBuffer();
 
-		std::vector<Buffer> buffers{ PositionBuffer, ColorBuffer };
+		std::vector<Buffer*> buffers{ &PositionBuffer, &ColorBuffer };
 		int buffSize = buffers.size();
 		ppBuffers = new ID3D11Buffer*[ buffSize ];
 		pStrides = new UINT[ buffSize ];
 		pOffsets = new UINT[ buffSize ];
 		BufferSize = 0;
-		for each (auto buff in buffers)
+		for each (auto pbuff in buffers)
 		{
-			if (buff.UpdateBuffer()) {
-				ppBuffers[ BufferSize ] = static_cast<ID3D11Buffer*>(buff.GetBuffer());
-				pStrides[ buffSize ] = buff.Stride;
-				pOffsets[ buffSize ] = buff.Offset;
+			if (pbuff->UpdateBuffer()) {
+				ppBuffers[ BufferSize ] = static_cast<ID3D11Buffer*>(pbuff->GetBuffer());
+				pStrides[ BufferSize ] = pbuff->GetStride();
+				pOffsets[ BufferSize ] = pbuff->GetOffset();
 
 				BufferSize++;
 			}

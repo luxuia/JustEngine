@@ -1,6 +1,6 @@
 
 #include "Camera.h"
-#include "Math/Matrix.h"
+#include "Matrix.h"
 #include "Frustum.h"
 
 namespace JustEngine

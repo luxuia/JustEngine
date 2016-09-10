@@ -1,6 +1,6 @@
 #include "GameObject.h"
 #include "Utility.h"
-#include "Math/Matrix.h"
+#include "Matrix.h"
 
 namespace JustEngine
 {

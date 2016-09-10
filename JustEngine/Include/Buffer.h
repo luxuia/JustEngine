@@ -9,18 +9,28 @@ namespace JustEngine
 	protected:
 		bool mDirty = true;
 	public:
-		virtual void DeleteBuffer() = 0;
-		virtual bool UpdateBuffer() = 0;
+		virtual void DeleteBuffer();
+		virtual bool UpdateBuffer();
 
-		virtual void* GetBuffer()  = 0;
+		virtual void* GetBuffer();
 
-
-		const UINT Stride = 0;
-		const UINT Offset = 0;
+		virtual UINT GetStride();
+		virtual UINT GetOffset();
 
 		bool GetDirty() const
 		{
 			return mDirty;
 		}
 	};
+	inline void Buffer::DeleteBuffer() {}
+	inline bool Buffer::UpdateBuffer()
+	{
+		return false;
+	}
+	inline void * Buffer::GetBuffer()
+	{
+		return NULL;
+	}
+	inline UINT Buffer::GetStride() { return 0; }
+	inline UINT Buffer::GetOffset() { return 0; }
 }

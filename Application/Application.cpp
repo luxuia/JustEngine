@@ -55,16 +55,27 @@ void App::Start()
 	auto node = GameObject::Create("SquareMesh");
 
 	auto mesh = MeshRender::Create();
-	MeshP3C4 vertices[] = {
-		{ Vector3(-1.0f, 1.0f, -1.0f),	Vector4(0.0f, 0.0f, 1.0f, 1.0f) },
-		{ Vector3(1.0f, 1.0f, -1.0f),	Vector4(0.0f, 1.0f, 0.0f, 1.0f) },
-		{ Vector3(1.0f, 1.0f, 1.0f),	Vector4(0.0f, 1.0f, 1.0f, 1.0f) },
-		{ Vector3(-1.0f, 1.0f, 1.0f),	Vector4(1.0f, 0.0f, 0.0f, 1.0f) },
-							
-		{ Vector3(-1.0f, -1.0f, -1.0f), Vector4(1.0f, 0.0f, 1.0f, 1.0f) },
-		{ Vector3(1.0f, -1.0f, -1.0f),	Vector4(1.0f, 1.0f, 0.0f, 1.0f) },
-		{ Vector3(1.0f, -1.0f, 1.0f),	Vector4(1.0f, 1.0f, 1.0f, 1.0f) },
-		{ Vector3(-1.0f, -1.0f, 1.0f),	Vector4(0.0f, 0.0f, 0.0f, 1.0f) },
+	Vector3 vertices[] = {
+		Vector3(-1.0f, 1.0f, -1.0f),
+		Vector3(1.0f, 1.0f, -1.0f),
+		Vector3(1.0f, 1.0f, 1.0f),
+		Vector3(-1.0f, 1.0f, 1.0f),
+
+		Vector3(-1.0f, -1.0f, -1.0f),
+		Vector3(1.0f, -1.0f, -1.0f),
+		Vector3(1.0f, -1.0f, 1.0f),
+		Vector3(-1.0f, -1.0f, 1.0f),
+	};
+	Vector4 colors[] ={
+		Vector4(0.0f, 0.0f, 1.0f, 1.0f),
+		Vector4(0.0f, 1.0f, 0.0f, 1.0f),
+		Vector4(0.0f, 1.0f, 1.0f, 1.0f),
+		Vector4(1.0f, 0.0f, 0.0f, 1.0f),
+
+		Vector4(1.0f, 0.0f, 1.0f, 1.0f),
+		Vector4(1.0f, 1.0f, 0.0f, 1.0f),
+		Vector4(1.0f, 1.0f, 1.0f, 1.0f),
+		Vector4(0.0f, 0.0f, 0.0f, 1.0f),
 	};
 
 	uint32_t indices[] = {
@@ -87,7 +98,12 @@ void App::Start()
 		7,4,6,
 	};
 
-	mesh->mMesh = Mesh<MeshP3C4>::Create("", vertices, ARRAY_NUM(vertices), indices, ARRAY_NUM(indices));
+	mesh->mMesh = Mesh::Create("");
+	mesh->mMesh->IdxBuffer.Data = indices;
+	mesh->mMesh->IdxBuffer.DataCount = ARRAY_NUM(indices);
+
+	mesh->mMesh->SetupBuffers(indices, ARRAY_NUM(indices), vertices, ARRAY_NUM(vertices), colors, ARRAY_NUM(colors));
+
 	mesh->mMaterial = Material::Create();
 
 	node->AddComponent(mesh);

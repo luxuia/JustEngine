@@ -2,7 +2,7 @@
 
 #include "pch.h"
 #include "Singleton.h"
-#include <fbxsdk.h>
+#include "fbxsdk.h"
 
 namespace JustEngine
 {
@@ -19,7 +19,7 @@ namespace JustEngine
 	};
 
 	class GameObject;
-	class MeshBase;
+	class Mesh;
 	class DLL_EXPORT FbxParser : public Singleton<FbxParser>
 	{
 		using GameObjectPtr = const std::shared_ptr<GameObject> &;
@@ -39,7 +39,7 @@ namespace JustEngine
 		void LoadNode(GameObjectPtr node, FbxNode* fbxNode);
 		void LoadMesh(GameObjectPtr node, FbxNode* fbxNode);
 
-		std::shared_ptr<MeshBase> CreateMesh(GameObjectPtr node, FbxNode* fbxNode);
+		std::shared_ptr<Mesh> CreateMesh(GameObjectPtr node, FbxNode* fbxNode);
 
 	};
 }

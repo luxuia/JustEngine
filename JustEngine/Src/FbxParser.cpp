@@ -68,9 +68,9 @@ namespace JustEngine
 		auto mesh = CreateMesh(node, fbxNode);
 	}
 
-	std::shared_ptr<MeshBase> FbxParser::CreateMesh(GameObjectPtr node, FbxNode * fbxNode)
+	std::shared_ptr<Mesh> FbxParser::CreateMesh(GameObjectPtr node, FbxNode * fbxNode)
 	{
-		Entity::Ptr mesh = nullptr;
+		Mesh::Ptr mesh = nullptr;
 
 		FbxMesh* fbxMesh = static_cast<FbxMesh*>(fbxNode->GetNodeAttribute());
 
