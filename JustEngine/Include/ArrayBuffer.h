@@ -4,6 +4,7 @@
 #include "Buffer.h"
 #include "GraphicsCore.h"
 #include "Vector.h"
+#include <vector>
 
 namespace JustEngine
 {
@@ -13,9 +14,7 @@ namespace JustEngine
 	public:
 		ArrayBuffer( const std::string& name, D3D11_USAGE buff_usage, D3D11_BIND_FLAG bind_flag );
 		ArrayBuffer() = default;
-		T* Data = nullptr;
-
-		int DataCount = 0;
+		std::vector<T> Data;
 
 		virtual bool UpdateBuffer() override;
 
@@ -61,24 +60,20 @@ namespace JustEngine
 	template<class T>
 	void ArrayBuffer<T>::DeleteBuffer()
 	{
-		if (Data != nullptr)
-		{
-			delete Data;
-		}
 	}
 
 	template<class T>
 	bool ArrayBuffer<T>::UpdateBuffer()
 	{
-		if (Data == nullptr) return false;
+		if (Data.size() == 0) return false;
 
 		D3D11_BUFFER_DESC db = {};
 		db.Usage = mUsage;
-		db.ByteWidth = sizeof(T)*DataCount;
+		db.ByteWidth = sizeof(T)*Data.size();
 		db.BindFlags = mBindFlag;
 		db.CPUAccessFlags = 0;
 		D3D11_SUBRESOURCE_DATA InitData = {};
-		InitData.pSysMem = Data;
+		InitData.pSysMem = &(*Data.begin());
 		HRESULT hr = Graphics::g_Device->CreateBuffer(&db, &InitData, &pBuffer);
 		if (FAILED(hr))
 		{

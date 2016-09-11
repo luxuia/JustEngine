@@ -99,8 +99,6 @@ void App::Start()
 	};
 
 	mesh->mMesh = Mesh::Create("");
-	mesh->mMesh->IdxBuffer.Data = indices;
-	mesh->mMesh->IdxBuffer.DataCount = ARRAY_NUM(indices);
 
 	mesh->mMesh->SetupBuffers(indices, ARRAY_NUM(indices), vertices, ARRAY_NUM(vertices), colors, ARRAY_NUM(colors));
 

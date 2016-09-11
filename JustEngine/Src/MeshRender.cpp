@@ -34,7 +34,6 @@ namespace JustEngine
 		ID3D11DeviceContext* context = nullptr;
 		g_Device->GetImmediateContext(&context);
 
-
 		ConstantBuffer cb;
 		cb.world = mOwner.lock()->GetWorldMatrix();
 		cb.view.LookAt(Vector3(0, 1, -5), Vector3(0, 1, 0), Vector3::Up);

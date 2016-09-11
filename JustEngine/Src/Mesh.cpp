@@ -21,14 +21,11 @@ namespace JustEngine
 
 	void Mesh::SetupBuffers(UINT * idxData, UINT idxCount, Vector3 * posData, UINT posCount, Vector4 * colorData, UINT colorCount)
 	{
-		IdxBuffer.Data = idxData;
-		IdxBuffer.DataCount = idxCount;
+		IdxBuffer.Data.assign(idxData, idxData+idxCount);
 
-		PositionBuffer.Data = posData;
-		PositionBuffer.DataCount = posCount;
+		PositionBuffer.Data.assign(posData, posData+posCount);
 
-		ColorBuffer.Data = colorData;
-		ColorBuffer.DataCount = colorCount;
+		ColorBuffer.Data.assign(colorData, colorData+colorCount);
 
 		UpdateBuffer();
 	}
@@ -62,7 +59,7 @@ namespace JustEngine
 
 		context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		context->DrawIndexed(IdxBuffer.DataCount, 0, 0);
+		context->DrawIndexed(IdxBuffer.Data.size(), 0, 0);
 
 		return true;
 	}
