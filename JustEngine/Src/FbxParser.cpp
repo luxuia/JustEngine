@@ -70,11 +70,29 @@ namespace JustEngine
 
 	std::shared_ptr<Mesh> FbxParser::CreateMesh(GameObjectPtr node, FbxNode * fbxNode)
 	{
-		Mesh::Ptr mesh = nullptr;
+		Mesh::Ptr mesh = Mesh::Create(fbxNode->GetName());
 
 		FbxMesh* fbxMesh = static_cast<FbxMesh*>(fbxNode->GetNodeAttribute());
 
+		int polygonCount = fbxMesh->GetPolygonCount();
+		int indicesCount = polygonCount * 3;
+			
+		mesh->Positions.Data.reserve(indicesCount * 3);
+		mesh->Indices.Data.reserve(indicesCount);
 
+		for (int i = 0; i < polygonCount; ++i) {
+			ASSERT(fbxMesh->GetPolygonSize(i) <= 3,  "Error: triangulate %s", mesh->GetName());
+
+			for (int jj = 0; jj < 3; ++jj) {
+				int ctrPointIdx = fbxMesh->GetPolygonVertex(i, jj);
+
+				auto position = fbxMesh->GetControlPointAt(ctrPointIdx);
+				mesh->Positions.Data.push_back((float*)&position);
+
+				int indices = i * 3 + jj;
+				mesh->Indices.Data.push_back(indices);
+			}
+		}
 		return mesh;
 	}
 

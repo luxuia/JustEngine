@@ -12,29 +12,29 @@ namespace JustEngine
 		return std::make_shared< Mesh >(name);
 	}
 
-	Mesh::Mesh(const std::string& name):IdxBuffer("vertex_index", D3D11_USAGE_DEFAULT, D3D11_BIND_FLAG::D3D11_BIND_INDEX_BUFFER),
-		PositionBuffer("vertex_position", D3D11_USAGE_DEFAULT, D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER),
-		ColorBuffer("vertex_color", D3D11_USAGE_DEFAULT, D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER)
+	Mesh::Mesh(const std::string& name):Indices("vertex_index", D3D11_USAGE_DEFAULT, D3D11_BIND_FLAG::D3D11_BIND_INDEX_BUFFER),
+		Positions("vertex_position", D3D11_USAGE_DEFAULT, D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER),
+		Colors("vertex_color", D3D11_USAGE_DEFAULT, D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER)
 	{
 	
 	}
 
 	void Mesh::SetupBuffers(UINT * idxData, UINT idxCount, Vector3 * posData, UINT posCount, Vector4 * colorData, UINT colorCount)
 	{
-		IdxBuffer.Data.assign(idxData, idxData+idxCount);
+		Indices.Data.assign(idxData, idxData+idxCount);
 
-		PositionBuffer.Data.assign(posData, posData+posCount);
+		Positions.Data.assign(posData, posData+posCount);
 
-		ColorBuffer.Data.assign(colorData, colorData+colorCount);
+		Colors.Data.assign(colorData, colorData+colorCount);
 
 		UpdateBuffer();
 	}
 
 	void Mesh::UpdateBuffer()
 	{
-		IdxBuffer.UpdateBuffer();
+		Indices.UpdateBuffer();
 
-		std::vector<Buffer*> buffers{ &PositionBuffer, &ColorBuffer };
+		std::vector<Buffer*> buffers{ &Positions, &Colors };
 		int buffSize = buffers.size();
 		ppBuffers = new ID3D11Buffer*[ buffSize ];
 		pStrides = new UINT[ buffSize ];
@@ -55,11 +55,11 @@ namespace JustEngine
 	bool Mesh::BindDraw(ID3D11DeviceContext* context)
 	{
 		context->IASetVertexBuffers(0, BufferSize, ppBuffers, pStrides, pOffsets);
-		context->IASetIndexBuffer(IdxBuffer.pBuffer, DXGI_FORMAT_R32_UINT, 0);
+		context->IASetIndexBuffer(Indices.pBuffer, DXGI_FORMAT_R32_UINT, 0);
 
 		context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		context->DrawIndexed(IdxBuffer.Data.size(), 0, 0);
+		context->DrawIndexed(Indices.Data.size(), 0, 0);
 
 		return true;
 	}

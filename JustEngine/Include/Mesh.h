@@ -17,11 +17,11 @@ namespace JustEngine
 		
 		static Ptr Create( const std::string& name );
 
-		ArrayBufferu IdxBuffer;
-		ArrayBufferV3 PositionBuffer;
-		ArrayBufferV3 NormalBuffer;
-		ArrayBufferf* pUVBuffers;
-		ArrayBufferV4 ColorBuffer;
+		ArrayBufferu Indices;
+		ArrayBufferV3 Positions;
+		ArrayBufferV3 Normals;
+		ArrayBufferf* pUVs;
+		ArrayBufferV4 Colors;
 
 		void SetupBuffers(UINT* idxData, UINT idxCount, Vector3* posData, UINT posCount, Vector4* colorData, UINT colorCount);
 
