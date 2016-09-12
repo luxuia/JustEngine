@@ -107,6 +107,7 @@ namespace JustEngine
 		Vector3() : x( 0.0f ), y( 0.0f ), z( 0.0f ) {}
 
 		Vector3( float* values): x(values[0]), y(values[1]), z(values[2]) {}
+		Vector3( double* values) : x(values[ 0 ]), y(values[ 1 ]), z(values[ 2 ]) {}
 			 
 		Vector3( const Vector4 &other ) : x( other.x ), y( other.y ), z( other.z ) {}
 			  

@@ -52,14 +52,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)JustEngine\Include;$(SolutionDir)ThirdPart\fbx_sdk\include;$(SolutionDir)ThirdPart\rapidjson\include;$(DXSDK_DIR)Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)JustEngine\Include;$(SolutionDir)ThirdPart\fbx_sdk\include;$(DXSDK_DIR)Include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(SolutionDir)lib\vs2013;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(SolutionDir)ThirdPart\fbx_sdk\lib\vs2013\x86\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -96,6 +96,7 @@
     <ClInclude Include="Include\FbxParser.h" />
     <ClInclude Include="Include\Frustum.h" />
     <ClInclude Include="Include\GameCore.h" />
+    <ClInclude Include="Include\GameObjectUtil.h" />
     <ClInclude Include="Include\GraphicsCore.h" />
     <ClInclude Include="Include\Hash.h" />
     <ClInclude Include="Include\Macros.h" />

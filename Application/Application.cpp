@@ -4,10 +4,12 @@
 #include "pch.h"
 //#include <SFML/Window.hpp>
 #include "GameCore.h"
-#include "GameObject.h"
 #include "Component.h"
 #include "Camera.h"
 #include "MeshRender.h"
+#include "GameObjectUtil.h"
+#include "FbxParser.h"
+#include "MathUtil.h"
 
 using namespace GameCore;
 using namespace JustEngine;
@@ -52,61 +54,10 @@ void App::Start()
 	
 	obj->SetParent(Root);
 
-	auto node = GameObject::Create("SquareMesh");
+	FbxParser::Instance()->LoadScene("Scene/tank.fbx", Root);
 
-	auto mesh = MeshRender::Create();
-	Vector3 vertices[] = {
-		Vector3(-1.0f, 1.0f, -1.0f),
-		Vector3(1.0f, 1.0f, -1.0f),
-		Vector3(1.0f, 1.0f, 1.0f),
-		Vector3(-1.0f, 1.0f, 1.0f),
-
-		Vector3(-1.0f, -1.0f, -1.0f),
-		Vector3(1.0f, -1.0f, -1.0f),
-		Vector3(1.0f, -1.0f, 1.0f),
-		Vector3(-1.0f, -1.0f, 1.0f),
-	};
-	Vector4 colors[] ={
-		Vector4(0.0f, 0.0f, 1.0f, 1.0f),
-		Vector4(0.0f, 1.0f, 0.0f, 1.0f),
-		Vector4(0.0f, 1.0f, 1.0f, 1.0f),
-		Vector4(1.0f, 0.0f, 0.0f, 1.0f),
-
-		Vector4(1.0f, 0.0f, 1.0f, 1.0f),
-		Vector4(1.0f, 1.0f, 0.0f, 1.0f),
-		Vector4(1.0f, 1.0f, 1.0f, 1.0f),
-		Vector4(0.0f, 0.0f, 0.0f, 1.0f),
-	};
-
-	uint32_t indices[] = {
-		3,1,0,
-		2,1,3,
-
-		0,5,4,
-		1,5,0,
-
-		3,4,7,
-		0,4,3,
-
-		1,6,5,
-		2,6,1,
-
-		2,7,6,
-		3,7,2,
-
-		6,4,5,
-		7,4,6,
-	};
-
-	mesh->mMesh = Mesh::Create("");
-
-	mesh->mMesh->SetupBuffers(indices, ARRAY_NUM(indices), vertices, ARRAY_NUM(vertices), colors, ARRAY_NUM(colors));
-
-	mesh->mMaterial = Material::Create();
-
-	node->AddComponent(mesh);
-
-	node->SetParent(Root);
+	//auto node = GameObjectUtil::CreateCube("SquareMesh");
+	//node->SetParent(Root);
 }
 
 void App::CleanUp()
@@ -121,12 +72,12 @@ void App::Update(float deltaTime)
 
 void App::RenderScene()
 {
-	auto mesh = Root->FindChildRecursively("SquareMesh");
+	auto mesh = Root->FindChildRecursively("Tank.004");
 
 	static float radian = 0;
 	radian += 0.1f;
 
-	Quaternion quat = Quaternion(0, sin(radian / 2), 0, cos(radian / 2));
+	Quaternion quat = MathUtil::AxisRadToQuat(Vector3(1,1,1), radian);
 	mesh->SetLocalRotate(quat);
 
 	auto renderer = mesh->GetComponent(typeid(MeshRender));

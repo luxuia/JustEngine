@@ -8,6 +8,8 @@ namespace JustEngine
 	{
 		mFbxManager = FbxManager::Create();
 		auto ios = FbxIOSettings::Create(mFbxManager, IOSROOT);
+		mFbxManager->SetIOSettings(ios);
+
 		auto importer = FbxImporter::Create(mFbxManager, "");
 		auto pos = filePath.find_last_of("/");
 		mFbxFolder = (std::string::npos == pos) ? "" : filePath.substr(0, pos + 1);
@@ -40,7 +42,12 @@ namespace JustEngine
 				}
 			}
 		}
-
+		else
+		{
+			auto status = importer->GetStatus();
+			auto str = status.GetErrorString();
+			Utility::Printf("FBX File Cant Load %s %s", filePath.c_str(), str);
+		}
 	}
 
 	void FbxParser::LoadNode(GameObjectPtr node, FbxNode * fbxNode)
@@ -66,6 +73,11 @@ namespace JustEngine
 		FbxMesh* fbxMesh = static_cast<FbxMesh*>(fbxNode->GetNodeAttribute());
 
 		auto mesh = CreateMesh(node, fbxNode);
+
+		auto renderer = MeshRender::Create();
+		renderer->mMesh = mesh;
+		renderer->mMaterial = Material::Create();
+		node->AddComponent(renderer);
 	}
 
 	std::shared_ptr<Mesh> FbxParser::CreateMesh(GameObjectPtr node, FbxNode * fbxNode)
@@ -87,12 +99,13 @@ namespace JustEngine
 				int ctrPointIdx = fbxMesh->GetPolygonVertex(i, jj);
 
 				auto position = fbxMesh->GetControlPointAt(ctrPointIdx);
-				mesh->Positions.Data.push_back((float*)&position);
+				mesh->Positions.Data.push_back((double*)&position);
 
 				int indices = i * 3 + jj;
 				mesh->Indices.Data.push_back(indices);
 			}
 		}
+		mesh->UpdateBuffer();
 		return mesh;
 	}
 

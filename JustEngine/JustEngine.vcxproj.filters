@@ -120,6 +120,9 @@
     <ClInclude Include="Include\resource.h">
       <Filter>Resource</Filter>
     </ClInclude>
+    <ClInclude Include="Include\GameObjectUtil.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\BoxBounds.cpp">

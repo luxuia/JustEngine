@@ -4,6 +4,8 @@
 #include "Singleton.h"
 #include "fbxsdk.h"
 
+#pragma comment(lib, "libfbxsdk.lib")
+
 namespace JustEngine
 {
 	enum class FbxImportFlags : unsigned int
@@ -17,6 +19,7 @@ namespace JustEngine
 	{
 	
 	};
+
 
 	class GameObject;
 	class Mesh;
