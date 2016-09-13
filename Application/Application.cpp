@@ -54,7 +54,7 @@ void App::Start()
 	
 	obj->SetParent(Root);
 
-	FbxParser::Instance()->LoadScene("Scene/tank.fbx", Root);
+	FbxParser::Instance()->LoadScene("Scene/BnHFemale.fbx", Root);
 
 	//auto node = GameObjectUtil::CreateCube("SquareMesh");
 	//node->SetParent(Root);
