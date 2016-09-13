@@ -76,6 +76,8 @@ namespace JustEngine
 		template<class T>
 		std::shared_ptr<T> GetComponent() const;
 		std::shared_ptr<Component> GetComponent( std::type_index type ) const;
+		template<typename T>
+		std::vector<std::shared_ptr<T>> GetComponentsInChilds() const;
 
 		void RemoveAllComponent();
 
@@ -104,4 +106,30 @@ namespace JustEngine
 		bool mTransformDirty = false;
 	};
 
+	template<class T>
+	inline std::shared_ptr<T> GameObject::GetComponent() const
+	{
+		auto it = mComponents.find(typeid(T));
+		if (it != mComponents.end())
+		{
+			return std::static_pointer_cast<T>( it->second);
+		}
+		return nullptr;
+	}
+
+	template<typename T>
+	inline std::vector<std::shared_ptr<T>> GameObject::GetComponentsInChilds() const
+	{
+		std::vector<std::shared_ptr<T>> components;
+		for (uint32_t i = 0; i < mChilds.size(); ++i)
+		{
+			auto child = mChilds[ i ];
+			auto com = child->GetComponent<T>();
+			if (com != nullptr)
+			{
+				components.push_back(com);
+			}
+		}
+		return components;
+	}
 }

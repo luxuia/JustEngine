@@ -135,19 +135,7 @@ namespace JustEngine
 		}
 		return nullptr;
 	}
-
-
-	template<class T>
-	std::shared_ptr<T> GameObject::GetComponent() const
-	{
-		auto it = mComponents.find(typeid(T));
-		if (it != mComponents.end())
-		{
-			return it->second;
-		}
-		return nullptr;
-	}
-
+	
 	void GameObject::RemoveAllComponent()
 	{
 		auto it = mComponents.begin();

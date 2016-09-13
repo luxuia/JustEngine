@@ -20,7 +20,6 @@ namespace JustEngine
 	
 	};
 
-
 	class GameObject;
 	class Mesh;
 	class DLL_EXPORT FbxParser : public Singleton<FbxParser>

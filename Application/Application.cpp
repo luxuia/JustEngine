@@ -54,7 +54,7 @@ void App::Start()
 	
 	obj->SetParent(Root);
 
-	FbxParser::Instance()->LoadScene("Scene/BnHFemale.fbx", Root);
+	FbxParser::Instance()->LoadScene("Scene/M_A01.fbx", Root);
 
 	//auto node = GameObjectUtil::CreateCube("SquareMesh");
 	//node->SetParent(Root);
@@ -71,16 +71,22 @@ void App::Update(float deltaTime)
 }
 
 void App::RenderScene()
-{
-	auto mesh = Root->FindChildRecursively("Tank.004");
-
+{		
 	static float radian = 0;
 	radian += 0.1f;
+	auto renderers = Root->GetComponentsInChilds<MeshRender>();
+	for (uint32_t i = 0; i < renderers.size(); ++i)
+	{
+		//auto mesh = Root->FindChildRecursively("MA-hand-A01");
 
-	Quaternion quat = MathUtil::AxisRadToQuat(Vector3(1,1,1), radian);
-	mesh->SetLocalRotate(quat);
 
-	auto renderer = mesh->GetComponent(typeid(MeshRender));
+		//auto renderer = mesh->GetComponent(typeid(MeshRender));
 
-	std::dynamic_pointer_cast<MeshRender>(renderer)->Render();
+		auto renderer = renderers[ i ];
+
+		Quaternion quat = MathUtil::AxisRadToQuat(Vector3(1, 1, 1), radian);
+		renderer->GetOwner()->SetLocalRotate(quat);
+
+		renderer->Render();
+	}
 }
