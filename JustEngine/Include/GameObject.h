@@ -33,7 +33,7 @@ namespace JustEngine
 		//virtual void Update();
 
 
-		void FreshData();
+		void FreshData(bool bForce = false);
 
 		Matrix4 GetWorldMatrix() const;
 		Matrix4 GetLocalMatrix( ) const;

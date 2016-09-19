@@ -13,6 +13,10 @@ namespace JustEngine
 	{
 	}
 
+	Quaternion::Quaternion(double x, double y, double z, double w):a(x),b(y),c(z),d(w)
+	{
+	}
+
 	Quaternion::Quaternion(Vector3 iu, float iv)
 	{
 		u = iu;

@@ -158,12 +158,21 @@ namespace JustEngine
 		return mLocalMatrix;
 	}
 
-	void GameObject::FreshData()
+	void GameObject::FreshData(bool bForce)
 	{
-		if (mTransformDirty) 
+		if (mTransformDirty || bForce)
 		{
 			mLocalMatrix = Matrix4::Rotate(mLocalRotation) * Matrix4::Scale(mLocalScale) * Matrix4::Transform(mLocalPosition);
-			mWorldMatrix = mLocalMatrix;
+			if (mParent.expired()) {
+				mWorldMatrix = mLocalMatrix;
+			}
+			else {
+				mWorldMatrix = mLocalMatrix * mParent.lock()->GetWorldMatrix();
+			}
+			for (uint32_t i = 0; i < mChilds.size(); ++i) {
+				mChilds[i]->FreshData(true);
+			}
+			mTransformDirty = false;
 		}
 	}
 
@@ -203,8 +212,6 @@ namespace JustEngine
 		{
 			mLocalScale = scale;
 			mTransformDirty = true;
-
-			FreshData();
 		}
 	}
 
@@ -214,8 +221,6 @@ namespace JustEngine
 		{
 			mLocalRotation = rotation;
 			mTransformDirty = true;
-
-			FreshData();
 		}
 	}
 
@@ -225,8 +230,6 @@ namespace JustEngine
 		{
 			mLocalPosition = pos;
 			mTransformDirty = true;
-
-			FreshData();
 		}
 	}
 

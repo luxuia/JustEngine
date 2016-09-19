@@ -73,12 +73,15 @@ void App::Update(float deltaTime)
 void App::RenderScene()
 {		
 	static float radian = 0;
-	radian += 0.1f;
+	//radian += 0.1f;
 	auto renderers = Root->GetComponentsInChilds<MeshRender>();
+
+	Root->SetLocalPosition(Vector3(.0, .0, 1.));
+	Root->FreshData(false);
+
 	for (uint32_t i = 0; i < renderers.size(); ++i)
 	{
 		//auto mesh = Root->FindChildRecursively("MA-hand-A01");
-
 
 		//auto renderer = mesh->GetComponent(typeid(MeshRender));
 

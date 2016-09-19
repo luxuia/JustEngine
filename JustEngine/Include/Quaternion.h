@@ -18,6 +18,7 @@ namespace JustEngine
 		Quaternion();
 
 		Quaternion(float x, float y, float z, float w);
+		Quaternion(double x, double y, double z, double w);
 		Quaternion(Vector3 u, float v);
 
 		Vector3 operator*(const Vector3 other);

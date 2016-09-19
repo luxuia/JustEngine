@@ -56,6 +56,8 @@ namespace JustEngine
 
 		node->AddChild(childNode);
 
+		ApplyLocalTransform(childNode, fbxNode);
+
 		FbxNodeAttribute* fbxNodeAttr = fbxNode->GetNodeAttribute();
 
 		if (fbxNodeAttr != nullptr)
@@ -107,6 +109,23 @@ namespace JustEngine
 		}
 		mesh->UpdateBuffer();
 		return mesh;
+	}
+
+	void FbxParser::ApplyLocalTransform(GameObjectPtr node, FbxNode* fbxNode)
+	{
+		auto matrix = fbxNode->EvaluateLocalTransform();
+		auto fbxQ = matrix.GetQ();
+		auto fbxT = matrix.GetT();
+		auto fbxS = matrix.GetS();
+
+		Vector3 trans{ fbxT.mData };
+		Vector3 scale{ fbxS.mData };
+		Quaternion rotation{ (float)fbxQ.mData[0], (float)fbxQ.mData[1], (float)fbxQ.mData[2], (float)fbxQ.mData[3]};
+
+		node->SetLocalPosition(trans);
+		node->SetLocalRotate(rotation);
+		node->SetLocalScale(scale);
+		node->FreshData();
 	}
 
 }

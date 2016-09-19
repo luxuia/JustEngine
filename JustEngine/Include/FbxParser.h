@@ -42,6 +42,7 @@ namespace JustEngine
 		void LoadMesh(GameObjectPtr node, FbxNode* fbxNode);
 
 		std::shared_ptr<Mesh> CreateMesh(GameObjectPtr node, FbxNode* fbxNode);
+		void ApplyLocalTransform(GameObjectPtr node, FbxNode* fbxNode);
 
 	};
 }
