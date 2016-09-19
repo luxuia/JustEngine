@@ -54,7 +54,7 @@ namespace JustEngine
 	{
 		GameObject::Ptr childNode = GameObject::Create(fbxNode->GetName());
 
-		node->AddChild(childNode);
+		childNode->SetParent(node);
 
 		ApplyLocalTransform(childNode, fbxNode);
 
@@ -123,8 +123,9 @@ namespace JustEngine
 		Quaternion rotation{ (float)fbxQ.mData[0], (float)fbxQ.mData[1], (float)fbxQ.mData[2], (float)fbxQ.mData[3]};
 
 		node->SetLocalPosition(trans);
-		node->SetLocalRotate(rotation);
-		node->SetLocalScale(scale);
+		node->SetLocalRotate(Quaternion(0.0, 0, 0, 1));
+		//node->SetLocalRotate(rotation);
+		//node->SetLocalScale(scale);
 		node->FreshData();
 	}
 

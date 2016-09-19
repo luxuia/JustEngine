@@ -51,9 +51,7 @@ namespace JustEngine
 		void SetLocalRotate(const Quaternion& rotation);
 		
 		Ptr GetParent() const;
-		
-		void AddChild(const Ptr &node);
-		void RemoveChild( const Ptr& node );
+
 
 		Ptr GetChildAt( uint32_t idx ) const;
 
@@ -82,6 +80,10 @@ namespace JustEngine
 		void RemoveAllComponent();
 
 	protected:
+
+		void AddChild(const Ptr &node);
+		void RemoveChild(const Ptr& node);
+
 
 		std::weak_ptr<OcTreeNode> mOcTreeNode;
 

@@ -162,7 +162,7 @@ namespace JustEngine
 	{
 		if (mTransformDirty || bForce)
 		{
-			mLocalMatrix = Matrix4::Rotate(mLocalRotation) * Matrix4::Scale(mLocalScale) * Matrix4::Transform(mLocalPosition);
+			mLocalMatrix = Matrix4::Transform(mLocalPosition) * Matrix4::Scale(mLocalScale)*Matrix4::Rotate(mLocalRotation);
 			if (mParent.expired()) {
 				mWorldMatrix = mLocalMatrix;
 			}

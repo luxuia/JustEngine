@@ -20,6 +20,13 @@ namespace JustEngine
 		return Quaternion(axis.x * st2, axis.y * st2, axis.z * st2, cos(t2));
 	}
 
+	JustEngine::Quaternion MathUtil::AxisRadToQuat(float x, float y, float z, float rad)
+	{
+		float t2 = rad * .5f;
+		float st2 = sin(t2);
+		return Quaternion(x * st2, y * st2, z * st2, cos(t2));
+	}
+
 	Quaternion MathUtil::EulerRadToQuat(const Vector3 & eulerRad)
 	{
 		return EulerRadToQuat(eulerRad.x, eulerRad.y, eulerRad.z);

@@ -73,10 +73,12 @@ void App::Update(float deltaTime)
 void App::RenderScene()
 {		
 	static float radian = 0;
-	//radian += 0.1f;
+	radian += 0.1f;
 	auto renderers = Root->GetComponentsInChilds<MeshRender>();
 
-	Root->SetLocalPosition(Vector3(.0, .0, 1.));
+	Root->SetLocalPosition(Vector3(.0, -50, 100.));
+	Root->SetLocalRotate(MathUtil::AxisRadToQuat(1, 0, 0, 90 * MathUtil::RadToDeg));// *MathUtil::AxisRadToQuat(0, 1, 0, radian));
+	Root->SetLocalScale(Vector3(0.5, 0.5, 0.5));
 	Root->FreshData(false);
 
 	for (uint32_t i = 0; i < renderers.size(); ++i)
