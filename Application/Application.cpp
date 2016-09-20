@@ -46,12 +46,17 @@ void App::Start()
 {	
 	Root = GameObject::Create("SceneRoot");
 
+	Root->SetLocalPosition(Vector3(.0, -50, 100.));
+	//Root->SetLocalRotate(MathUtil::AxisRadToQuat(1, 0, 0, 90 * MathUtil::RadToDeg));// *MathUtil::AxisRadToQuat(0, 1, 0, radian));
+	Root->SetLocalScale(Vector3(0.5, 0.5, 0.5));
+	Root->FreshData(false);
+
+
 	auto obj = GameObject::Create( "Camera" );
 	auto camera = Camera::Create();
 	camera->SetPerspective(100.f, 100.f, 1.f, 1000.f);
 
 	obj->AddComponent(camera);
-	
 	obj->SetParent(Root);
 
 	FbxParser::Instance()->LoadScene("Scene/M_A01.fbx", Root);
@@ -76,10 +81,6 @@ void App::RenderScene()
 	radian += 0.1f;
 	auto renderers = Root->GetComponentsInChilds<MeshRender>();
 
-	Root->SetLocalPosition(Vector3(.0, -50, 100.));
-	Root->SetLocalRotate(MathUtil::AxisRadToQuat(1, 0, 0, 90 * MathUtil::RadToDeg));// *MathUtil::AxisRadToQuat(0, 1, 0, radian));
-	Root->SetLocalScale(Vector3(0.5, 0.5, 0.5));
-	Root->FreshData(false);
 
 	for (uint32_t i = 0; i < renderers.size(); ++i)
 	{
@@ -91,6 +92,7 @@ void App::RenderScene()
 
 		Quaternion quat = MathUtil::AxisRadToQuat(Vector3(1, 1, 1), radian);
 		renderer->GetOwner()->SetLocalRotate(quat);
+		renderer->GetOwner()->FreshData();
 
 		renderer->Render();
 	}

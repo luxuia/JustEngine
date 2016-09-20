@@ -14,8 +14,8 @@ namespace JustEngine
 		mTypeIndex = typeid(GameObject);
 		//mComponents = std::unordered_map<std::type_index, std::shared_ptr<Component>>();
 		//SetLocalScale(Vector3::One);
-		//SetLocalPosition(Vector3::Zero);
-		//SetLocalRotate(Vector3::Zero);
+		SetLocalPosition(Vector3::Zero);
+		SetLocalRotate(Quaternion(.0, .0, .0, 1.));
 	}
 
 	GameObject::~GameObject()
