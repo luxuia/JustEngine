@@ -1,6 +1,7 @@
 #include "MeshRender.h"
 #include "GraphicsCore.h"
 #include "GameObject.h"
+#include "Camera.h"
 
 namespace JustEngine
 {
@@ -29,15 +30,15 @@ namespace JustEngine
 
 	}
 
-	void MeshRender::Render()
+	void MeshRender::Render(const Camera& camera)
 	{
 		ID3D11DeviceContext* context = nullptr;
 		g_Device->GetImmediateContext(&context);
 
 		ConstantBuffer cb;
 		cb.world = mOwner.lock()->GetWorldMatrix();
-		cb.view.LookAt(Vector3(0, 0, -0.1), Vector3(0, 0, 0), Vector3::Up);
-		cb.proj.PerspectiveFovLH(3.1415f/2, DEFAULT_RECT_WIDTH/DEFAULT_RECT_HEIGHT, 0.01f, 1000.f);
+		cb.view = camera.GetViewMatrix();
+		cb.proj = camera.GetProjectionMatrix();
 
 		//// Test Code
 		//Vector4 TestPos = Vector4(1, 1, 1, 1);

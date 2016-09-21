@@ -218,7 +218,7 @@ namespace JustEngine
 		return *this;
 	}
 
-
+	// 这里传的是near出的width和height，貌似不常用
 	Matrix4& Matrix4::PerspectiveLH( float width, float height, float near, float far )
 	{
 		float nearz2, fRange;

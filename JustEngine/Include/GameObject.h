@@ -9,6 +9,7 @@
 #include "Component.h"
 #include "MeshRender.h"
 #include "Quaternion.h"
+#include "Signal.h"
 
 namespace JustEngine
 {
@@ -22,6 +23,7 @@ namespace JustEngine
 		friend class OcTreeNode;
 	public :
 		ObjTypePtr( GameObject );
+		const static std::string TransfromChange;
 
 		static Ptr Create( const std::string & name );
 
@@ -31,7 +33,6 @@ namespace JustEngine
 		//virtual void OnEnable();
 		//virtual void OnDisable();
 		//virtual void Update();
-
 
 		void FreshData(bool bForce = false);
 
@@ -79,11 +80,14 @@ namespace JustEngine
 
 		void RemoveAllComponent();
 
+		const Signal::Ptr& GetSignal() const;
+
 	protected:
 
 		void AddChild(const Ptr &node);
 		void RemoveChild(const Ptr& node);
 
+		Signal::Ptr mSignal;
 
 		std::weak_ptr<OcTreeNode> mOcTreeNode;
 

@@ -4,6 +4,8 @@
 
 namespace JustEngine
 {
+	const std::string TransfromChange = "TransfromChange";
+
 	GameObject::Ptr GameObject::Create(const std::string& name )
 	{
 		return std::make_shared<GameObject>(name);
@@ -16,6 +18,9 @@ namespace JustEngine
 		//SetLocalScale(Vector3::One);
 		SetLocalPosition(Vector3::Zero);
 		SetLocalRotate(Quaternion(.0, .0, .0, 1.));
+
+		mSignal = Signal::Create();
+		mSignal->CreateSlot(TransfromChange);
 	}
 
 	GameObject::~GameObject()
@@ -148,6 +153,11 @@ namespace JustEngine
 		mComponents.clear();
 	}
 
+	const JustEngine::Signal::Ptr& GameObject::GetSignal() const
+	{
+		return mSignal;
+	}
+
 	Matrix4 GameObject::GetLocalMatrix() const
 	{
 // 		if (mTransformDirty)
@@ -173,6 +183,7 @@ namespace JustEngine
 				mChilds[i]->FreshData(true);
 			}
 			mTransformDirty = false;
+			mSignal->Emit(TransfromChange, shared_from_this());
 		}
 	}
 

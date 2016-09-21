@@ -8,6 +8,7 @@
 
 namespace JustEngine
 {
+	class Camera;
 	class DLL_EXPORT MeshRender : public Component
 	{
 	public:
@@ -31,6 +32,6 @@ namespace JustEngine
 		ID3D11Buffer* mpConstantBuffer;
 
 		virtual void Setup();
-		virtual void Render();
+		virtual void Render(const Camera& camera);
 	};
 }

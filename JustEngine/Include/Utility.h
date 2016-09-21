@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Hash.h"
+
 namespace Utility
 {
 	inline void Print(const char* msg) { printf(msg); }

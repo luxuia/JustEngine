@@ -46,15 +46,14 @@ void App::Start()
 {	
 	Root = GameObject::Create("SceneRoot");
 
+	auto obj = GameObject::Create( "Camera" );
+	auto camera = Camera::Create();
+	camera->SetPerspective(MathUtil::PI/2, DEFAULT_RECT_WIDTH/DEFAULT_RECT_HEIGHT, 1.f, 1000.f);
+
 	Root->SetLocalPosition(Vector3(.0, -50, 100.));
 	Root->SetLocalRotate(MathUtil::AxisRadToQuat(0, 1, 0, 180 * MathUtil::DegToRad));// *MathUtil::AxisRadToQuat(0, 1, 0, radian));
 	Root->SetLocalScale(Vector3(0.5, 0.5, 0.5));
-	Root->FreshData(false);
-
-
-	auto obj = GameObject::Create( "Camera" );
-	auto camera = Camera::Create();
-	camera->SetPerspective(100.f, 100.f, 1.f, 1000.f);
+	Root->FreshData();
 
 	obj->AddComponent(camera);
 	obj->SetParent(Root);
@@ -72,7 +71,7 @@ void App::CleanUp()
 
 void App::Update(float deltaTime)
 {
-	auto camera = Root->FindChildRecursively("Camera");
+	
 }
 
 void App::RenderScene()
@@ -81,10 +80,12 @@ void App::RenderScene()
 	radian += 0.1f;
 	auto renderers = Root->GetComponentsInChilds<MeshRender>();
 
+	auto camera = Root->FindChildRecursively("Camera")->GetComponent<Camera>();
+
 	for (uint32_t i = 0; i < renderers.size(); ++i)
 	{
 		auto renderer = renderers[ i ];
 
-		renderer->Render();
+		renderer->Render(*camera.get());
 	}
 }

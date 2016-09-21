@@ -11,6 +11,8 @@ namespace JustEngine
 	{
 	protected:
 		Matrix4 mProjectionMatrix;
+		Matrix4 mViewMatrix;
+
 		Frustum* mFrustum;
 
 		bool mPerspective = true;
@@ -23,15 +25,18 @@ namespace JustEngine
 		static Ptr Create();
 		Camera();
 
-		void SetPerspective( float width, float height, float near, float far );
+		void SetPerspective(float fov, float aspect, float nearz, float farz);
 
-		void SetOrtho( float width, float height, float near, float far );
+		void SetOrtho( float width, float height, float nearz, float farz );
 
-		Matrix4 GetProjectionMatrix() const;
+		const Matrix4& GetProjectionMatrix() const;
+		const Matrix4& GetViewMatrix() const;
 
-		Frustum* GetFrustum() const;
+		const Frustum& GetFrustum() const;
 
 		bool IsPerspective() const;
+
+		void OnOwnerTransformChange(const std::shared_ptr<void>& sender);
 
 		bool IsVisible( const Vector4& point ) const;
 
