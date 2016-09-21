@@ -104,6 +104,7 @@
     <ClInclude Include="Include\MathUtil.h" />
     <ClInclude Include="Include\Matrix.h" />
     <ClInclude Include="Include\Quaternion.h" />
+    <ClInclude Include="Include\Signal.h" />
     <ClInclude Include="Include\Vector.h" />
     <ClInclude Include="Include\Mesh.h" />
     <ClInclude Include="Include\MeshRender.h" />
@@ -120,6 +121,7 @@
     <ClInclude Include="Include\Utility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Include\Signal.cpp" />
     <ClCompile Include="Src\BoxBounds.cpp" />
     <ClCompile Include="Src\Camera.cpp" />
     <ClCompile Include="Src\Component.cpp" />
