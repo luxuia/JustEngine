@@ -167,7 +167,7 @@ namespace JustEngine
 				mWorldMatrix = mLocalMatrix;
 			}
 			else {
-				mWorldMatrix = mLocalMatrix * mParent.lock()->GetWorldMatrix();
+				mWorldMatrix = mParent.lock()->GetWorldMatrix() * mLocalMatrix;
 			}
 			for (uint32_t i = 0; i < mChilds.size(); ++i) {
 				mChilds[i]->FreshData(true);

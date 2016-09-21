@@ -47,7 +47,7 @@ void App::Start()
 	Root = GameObject::Create("SceneRoot");
 
 	Root->SetLocalPosition(Vector3(.0, -50, 100.));
-	//Root->SetLocalRotate(MathUtil::AxisRadToQuat(1, 0, 0, 90 * MathUtil::RadToDeg));// *MathUtil::AxisRadToQuat(0, 1, 0, radian));
+	Root->SetLocalRotate(MathUtil::AxisRadToQuat(0, 1, 0, 180 * MathUtil::DegToRad));// *MathUtil::AxisRadToQuat(0, 1, 0, radian));
 	Root->SetLocalScale(Vector3(0.5, 0.5, 0.5));
 	Root->FreshData(false);
 
@@ -81,18 +81,9 @@ void App::RenderScene()
 	radian += 0.1f;
 	auto renderers = Root->GetComponentsInChilds<MeshRender>();
 
-
 	for (uint32_t i = 0; i < renderers.size(); ++i)
 	{
-		//auto mesh = Root->FindChildRecursively("MA-hand-A01");
-
-		//auto renderer = mesh->GetComponent(typeid(MeshRender));
-
 		auto renderer = renderers[ i ];
-
-		Quaternion quat = MathUtil::AxisRadToQuat(Vector3(1, 1, 1), radian);
-		renderer->GetOwner()->SetLocalRotate(quat);
-		renderer->GetOwner()->FreshData();
 
 		renderer->Render();
 	}
