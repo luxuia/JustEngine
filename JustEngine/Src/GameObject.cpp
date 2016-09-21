@@ -4,7 +4,7 @@
 
 namespace JustEngine
 {
-	const std::string TransfromChange = "TransfromChange";
+	const std::string GameObject::TransfromChange = "TransfromChange";
 
 	GameObject::Ptr GameObject::Create(const std::string& name )
 	{
@@ -80,14 +80,16 @@ namespace JustEngine
 		return mChilds[idx];
 	}
 
-	void GameObject::SetParent(const Ptr& parent )
+	// 设完localTransform后再调用
+	// 免费的计算worldTrans的机会
+	void GameObject::SetParent(const Ptr& parent, bool freshData)
 	{
 		if (mParent.lock() == parent) return;
 		if (mParent.lock()!= nullptr) RemoveFromParent();
 
 		mParent = parent;
 		parent->AddChild(shared_from_this());
-		FreshData();
+		if (freshData) FreshData();
 	}
 
 	void GameObject::RemoveFromParent()
@@ -158,7 +160,7 @@ namespace JustEngine
 		return mSignal;
 	}
 
-	Matrix4 GameObject::GetLocalMatrix() const
+	const Matrix4& GameObject::GetLocalMatrix() const
 	{
 // 		if (mTransformDirty)
 // 		{
@@ -175,9 +177,16 @@ namespace JustEngine
 			mLocalMatrix = Matrix4::Transform(mLocalPosition) * Matrix4::Scale(mLocalScale)*Matrix4::Rotate(mLocalRotation);
 			if (mParent.expired()) {
 				mWorldMatrix = mLocalMatrix;
+				mWorldPosition = mLocalPosition;
+				mWorldRotation = mLocalRotation;
+				mWorldScale = mLocalScale;
 			}
 			else {
-				mWorldMatrix = mParent.lock()->GetWorldMatrix() * mLocalMatrix;
+				auto worldMat = mParent.lock()->GetWorldMatrix();
+				mWorldMatrix = worldMat * mLocalMatrix;
+				mWorldPosition = mLocalPosition * worldMat;
+				mWorldScale = mParent.lock()->GetWorldScale().Multi(mLocalScale);
+				mWorldRotation = mLocalRotation*mParent.lock()->GetWorldRotation();
 			}
 			for (uint32_t i = 0; i < mChilds.size(); ++i) {
 				mChilds[i]->FreshData(true);
@@ -187,32 +196,32 @@ namespace JustEngine
 		}
 	}
 
-	Matrix4 GameObject::GetWorldMatrix() const
+	const Matrix4& GameObject::GetWorldMatrix() const
 	{
 		return mWorldMatrix;
 	}
 
-	Vector3 GameObject::GetLocalPosition() const
+	const Vector3& GameObject::GetLocalPosition() const
 	{
 		return mLocalPosition;
 	}
-	Vector3 GameObject::GetLocalScale() const
+	const Vector3& GameObject::GetLocalScale() const
 	{
 		return mLocalScale;
 	}
-	Quaternion GameObject::GetLocalRotation() const
+	const Quaternion& GameObject::GetLocalRotation() const
 	{
 		return mLocalRotation;
 	}
-	Vector3 GameObject::GetWorldPosition() const
+	const Vector3& GameObject::GetWorldPosition() const
 	{
 		return mWorldPosition;
 	}
-	Vector3 GameObject::GetWorldScale() const
+	const Vector3& GameObject::GetWorldScale() const
 	{
 		return mWorldScale;
 	}
-	Quaternion GameObject::GetWorldRotation() const
+	const Quaternion& GameObject::GetWorldRotation() const
 	{
 		return mWorldRotation;
 	}

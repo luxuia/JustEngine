@@ -36,13 +36,14 @@ namespace JustEngine
 
 		bool IsPerspective() const;
 
-		void OnOwnerTransformChange(const std::shared_ptr<void>& sender);
 
 		bool IsVisible( const Vector4& point ) const;
 
 	protected:
 		virtual void OnAttach( const std::shared_ptr<GameObject> &node ) override;
 		virtual void OnDetach( const std::shared_ptr<GameObject> &node ) override;
+
+		void OnOwnerTransformChange(const std::shared_ptr<void>& sender);
 
 	private:
 		

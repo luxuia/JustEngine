@@ -121,7 +121,7 @@
     <ClInclude Include="Include\Utility.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Include\Signal.cpp" />
+    <ClCompile Include="Hash.cpp" />
     <ClCompile Include="Src\BoxBounds.cpp" />
     <ClCompile Include="Src\Camera.cpp" />
     <ClCompile Include="Src\Component.cpp" />
@@ -136,6 +136,7 @@
     <ClCompile Include="Src\MathUtil.cpp" />
     <ClCompile Include="Src\Matrix.cpp" />
     <ClCompile Include="Src\Quaternion.cpp" />
+    <ClCompile Include="Src\Signal.cpp" />
     <ClCompile Include="Src\Vector.cpp" />
     <ClCompile Include="Src\Mesh.cpp" />
     <ClCompile Include="Src\MeshRender.cpp" />

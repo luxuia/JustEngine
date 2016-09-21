@@ -38,7 +38,7 @@ namespace JustEngine
 					{
 						LoadNode(rootNode, fbxRootNode->GetChild(i));
 					}
-					rootNode->FreshData();
+					rootNode->FreshData(true);
 				}
 			}
 		}
@@ -54,9 +54,8 @@ namespace JustEngine
 	{
 		GameObject::Ptr childNode = GameObject::Create(fbxNode->GetName());
 
-		childNode->SetParent(node);
-
 		ApplyLocalTransform(childNode, fbxNode);
+		childNode->SetParent(node, false);
 
 		FbxNodeAttribute* fbxNodeAttr = fbxNode->GetNodeAttribute();
 
@@ -125,7 +124,6 @@ namespace JustEngine
 		node->SetLocalPosition(trans);
 		node->SetLocalRotate(rotation);
 		node->SetLocalScale(scale);
-		node->FreshData();
 	}
 
 }

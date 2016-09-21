@@ -16,15 +16,13 @@ namespace JustEngine {
 		using TYPE_FUNC = std::function< void(const std::shared_ptr<void>& sender)>;
 		class Slot {
 		public:
-			ObjTypePtr(Slot);
-
 			std::map< std::weak_ptr<void>,
 				TYPE_FUNC,
 				std::owner_less< std::weak_ptr<void>> >
 				Listeners;
 		};
 
-		std::unordered_map<size_t, Slot::Ptr> mSignal;
+		std::unordered_map<size_t, Slot> mSignal;
 		public:
 			ObjTypePtr(Signal);
 

@@ -46,19 +46,24 @@ void App::Start()
 {	
 	Root = GameObject::Create("SceneRoot");
 
+	//Root->SetLocalPosition(Vector3(.0, -50, 100.));
+	//Root->SetLocalRotate(MathUtil::AxisRadToQuat(0, 1, 0, 180 * MathUtil::DegToRad));// *MathUtil::AxisRadToQuat(0, 1, 0, radian));
+	//Root->SetLocalScale(Vector3(0.5, 0.5, 0.5));
+	Root->FreshData();
+
 	auto obj = GameObject::Create( "Camera" );
 	auto camera = Camera::Create();
 	camera->SetPerspective(MathUtil::PI/2, DEFAULT_RECT_WIDTH/DEFAULT_RECT_HEIGHT, 1.f, 1000.f);
 
-	Root->SetLocalPosition(Vector3(.0, -50, 100.));
-	Root->SetLocalRotate(MathUtil::AxisRadToQuat(0, 1, 0, 180 * MathUtil::DegToRad));// *MathUtil::AxisRadToQuat(0, 1, 0, radian));
-	Root->SetLocalScale(Vector3(0.5, 0.5, 0.5));
-	Root->FreshData();
-
-	obj->AddComponent(camera);
+	obj->AddComponent(camera);	
+	
+	obj->SetLocalPosition(Vector3(0, 50, 100));
 	obj->SetParent(Root);
 
-	FbxParser::Instance()->LoadScene("Scene/M_A01.fbx", Root);
+	auto fbxRoot = GameObject::Create("FbxRoot");
+	fbxRoot->SetLocalPosition({ .0, -50, 0 });
+	fbxRoot->SetParent(Root);
+	FbxParser::Instance()->LoadScene("Scene/M_A01.fbx", fbxRoot);
 
 	//auto node = GameObjectUtil::CreateCube("SquareMesh");
 	//node->SetParent(Root);
@@ -78,7 +83,8 @@ void App::RenderScene()
 {		
 	static float radian = 0;
 	radian += 0.1f;
-	auto renderers = Root->GetComponentsInChilds<MeshRender>();
+	std::vector<MeshRender::Ptr> renderers;
+	Root->GetComponentsInChilds<MeshRender>(renderers);
 
 	auto camera = Root->FindChildRecursively("Camera")->GetComponent<Camera>();
 

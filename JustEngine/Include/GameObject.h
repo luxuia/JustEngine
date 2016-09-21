@@ -36,16 +36,16 @@ namespace JustEngine
 
 		void FreshData(bool bForce = false);
 
-		Matrix4 GetWorldMatrix() const;
-		Matrix4 GetLocalMatrix( ) const;
+		const Matrix4& GetWorldMatrix() const;
+		const Matrix4& GetLocalMatrix( ) const;
 		//Matrix4 GetInvertWorldMatrix( ) const;
 
-		Vector3 GetLocalPosition() const;
-		Vector3 GetWorldPosition() const;
-		Vector3 GetLocalScale() const;
-		Vector3 GetWorldScale() const;
-		Quaternion GetLocalRotation() const;
-		Quaternion GetWorldRotation() const;
+		const Vector3& GetLocalPosition() const;
+		const Vector3& GetWorldPosition() const;
+		const Vector3& GetLocalScale() const;
+		const Vector3& GetWorldScale() const;
+		const Quaternion& GetLocalRotation() const;
+		const Quaternion& GetWorldRotation() const;
 
 		void SetLocalPosition(const Vector3& pos);
 		void SetLocalScale(const Vector3& scale);
@@ -58,7 +58,7 @@ namespace JustEngine
 
 		void RemoveFromParent();
 
-		void SetParent( const Ptr& parent );
+		void SetParent( const Ptr& parent, bool freshData = true);
 
 		void RemoveAllChilds();
 
@@ -76,7 +76,7 @@ namespace JustEngine
 		std::shared_ptr<T> GetComponent() const;
 		std::shared_ptr<Component> GetComponent( std::type_index type ) const;
 		template<typename T>
-		std::vector<std::shared_ptr<T>> GetComponentsInChilds() const;
+		void GetComponentsInChilds(std::vector<std::shared_ptr<T>>& components) const;
 
 		void RemoveAllComponent();
 
@@ -124,9 +124,8 @@ namespace JustEngine
 	}
 
 	template<typename T>
-	inline std::vector<std::shared_ptr<T>> GameObject::GetComponentsInChilds() const
+	inline void GameObject::GetComponentsInChilds(std::vector<std::shared_ptr<T>>& components) const
 	{
-		std::vector<std::shared_ptr<T>> components;
 		for (uint32_t i = 0; i < mChilds.size(); ++i)
 		{
 			auto child = mChilds[ i ];
@@ -135,7 +134,7 @@ namespace JustEngine
 			{
 				components.push_back(com);
 			}
+			child->GetComponentsInChilds<T>(components);
 		}
-		return components;
 	}
 }

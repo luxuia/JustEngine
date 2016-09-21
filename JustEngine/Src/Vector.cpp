@@ -201,9 +201,14 @@ namespace JustEngine
 			);
 	}
 
-	Vector3 Vector3::Project( Vector3 other ) const
+	Vector3 Vector3::Project( Vector3& other ) const
 	{
 		return other * (*this * other / other.SquareLength());
+	}
+
+	Vector3 Vector3::Multi(Vector3& other) const
+	{
+		return Vector3(x*other.x, y * other.y, z * other.z);
 	}
 
 	Vector3 Vector3::Clone() const
@@ -284,7 +289,7 @@ namespace JustEngine
 		float x = *this * (*(Vector3*)trans.m[0]);
 		float y = *this * (*(Vector3*)trans.m[1]);
 		float z = *this * (*(Vector3*)trans.m[2]);
-		return{ x, y,z };
+		return{ x +trans.m[ 0 ][ 3 ], y + trans.m[ 1 ][ 3 ],z + trans.m[ 1 ][ 3 ] };
 	}
 
 	const Vector3 Vector3::Zero = { 0, 0, 0 };

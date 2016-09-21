@@ -133,7 +133,9 @@ namespace JustEngine
 
 		Vector3 CrossProduct( Vector3 other ) const;
 
-		Vector3 Project( Vector3 other ) const;
+		Vector3 Project(Vector3 & other) const;
+
+		Vector3 Multi(Vector3 & other) const;
 
 		Vector3 Clone() const;
 

@@ -64,7 +64,8 @@ namespace JustEngine
 	void Camera::OnOwnerTransformChange(const std::shared_ptr<void>& sender) {
 		auto node = std::static_pointer_cast<GameObject>(sender);
 
-		mViewMatrix.LookAt(node->GetWorldPosition(), Vector3(0, 0, 0), Vector3::Up);
+		auto& worldPos = node->GetWorldPosition();
+		mViewMatrix.LookAt(worldPos, Vector3(0, 0, 0), Vector3::Up);
 	}
 
 	void Camera::OnAttach( const std::shared_ptr<GameObject> &node )
