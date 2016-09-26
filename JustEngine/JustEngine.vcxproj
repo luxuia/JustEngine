@@ -119,9 +119,11 @@
     <ClInclude Include="Include\Singleton.h" />
     <ClInclude Include="Include\TypeComparable.h" />
     <ClInclude Include="Include\Utility.h" />
+    <ClInclude Include="Input.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Hash.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Src\BoxBounds.cpp" />
     <ClCompile Include="Src\Camera.cpp" />
     <ClCompile Include="Src\Component.cpp" />

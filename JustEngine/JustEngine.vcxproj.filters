@@ -126,6 +126,9 @@
     <ClInclude Include="Include\Signal.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\BoxBounds.cpp">
@@ -195,6 +198,9 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="Src\Signal.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>
