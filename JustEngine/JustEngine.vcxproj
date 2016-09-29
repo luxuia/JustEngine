@@ -99,6 +99,7 @@
     <ClInclude Include="Include\GameObjectUtil.h" />
     <ClInclude Include="Include\GraphicsCore.h" />
     <ClInclude Include="Include\Hash.h" />
+    <ClInclude Include="Include\Input.h" />
     <ClInclude Include="Include\Macros.h" />
     <ClInclude Include="Include\Material.h" />
     <ClInclude Include="Include\MathUtil.h" />
@@ -119,11 +120,8 @@
     <ClInclude Include="Include\Singleton.h" />
     <ClInclude Include="Include\TypeComparable.h" />
     <ClInclude Include="Include\Utility.h" />
-    <ClInclude Include="Input.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Hash.cpp" />
-    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Src\BoxBounds.cpp" />
     <ClCompile Include="Src\Camera.cpp" />
     <ClCompile Include="Src\Component.cpp" />
@@ -134,6 +132,8 @@
     <ClCompile Include="Src\GameCore.cpp" />
     <ClCompile Include="Src\GameObject.cpp" />
     <ClCompile Include="Src\GraphicsCore.cpp" />
+    <ClCompile Include="Src\Hash.cpp" />
+    <ClCompile Include="Src\Input.cpp" />
     <ClCompile Include="Src\Material.cpp" />
     <ClCompile Include="Src\MathUtil.cpp" />
     <ClCompile Include="Src\Matrix.cpp" />

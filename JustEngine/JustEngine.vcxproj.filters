@@ -126,7 +126,7 @@
     <ClInclude Include="Include\Signal.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Input.h">
+    <ClInclude Include="Include\Input.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -194,13 +194,13 @@
     <ClCompile Include="Src\Vector.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Hash.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Signal.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Input.cpp">
+    <ClCompile Include="Src\Input.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Hash.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

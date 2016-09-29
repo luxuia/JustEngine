@@ -3,7 +3,7 @@
 #include "pch.h"
 #include "Singleton.h"
 
-namespace JustEngine
+namespace GameCore
 {
 	enum class InputKey : uint32_t
 	{
@@ -128,7 +128,7 @@ namespace JustEngine
 		
 		NumInputs,
 	};
-	class DLL_EXPORT Input : public Singleton<Input>
+	class DLL_EXPORT Input : public JustEngine::Singleton<Input>
 	{
 	public:
 		using KEY_TYPE = std::underlying_type<InputKey>::type;
@@ -136,5 +136,6 @@ namespace JustEngine
 		bool IsAnyPressed(void);
 		bool IsPressed(InputKey key);
 
+		void Update();
 	};
 }

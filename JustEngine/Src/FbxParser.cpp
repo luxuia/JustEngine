@@ -1,6 +1,10 @@
 #include "FbxParser.h"
 #include "GameObject.h"
 #include "Mesh.h"
+#include "fbxsdk.h"
+
+#pragma comment(lib, "libfbxsdk.lib")
+
 
 namespace JustEngine
 {
@@ -92,18 +96,24 @@ namespace JustEngine
 			
 		mesh->Positions.Data.reserve(indicesCount * 3);
 		mesh->Indices.Data.reserve(indicesCount);
+		mesh->Colors.Data.reserve(indicesCount * 3);
 
 		for (int i = 0; i < polygonCount; ++i) {
 			ASSERT(fbxMesh->GetPolygonSize(i) <= 3,  "Error: triangulate %s", mesh->GetName());
 
 			for (int jj = 0; jj < 3; ++jj) {
 				int ctrPointIdx = fbxMesh->GetPolygonVertex(i, jj);
-
+				// TODO 
+				// Use Triangle Strip instead of triangle list
 				auto position = fbxMesh->GetControlPointAt(ctrPointIdx);
+
 				mesh->Positions.Data.push_back((double*)&position);
 
 				int indices = i * 3 + jj;
 				mesh->Indices.Data.push_back(indices);
+
+				auto color = fbxMesh->GetElementVertexColor(ctrPointIdx);
+				mesh->Colors.Data.push_back((double*)&color);
 			}
 		}
 		mesh->UpdateBuffer();

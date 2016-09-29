@@ -13,11 +13,15 @@
 #include "GameCore.h"
 #include "GraphicsCore.h"
 
+#include "Input.h"
+
 namespace GameCore
 {
 	void InitializeApp( IGameApp& game )
 	{
 		Graphics::Init();
+
+		Input::Instance();
 
 		game.Start();
 	}
@@ -31,6 +35,9 @@ namespace GameCore
 
 	bool UpdateApp( IGameApp& game )
 	{
+
+		Input::Instance()->Update();
+
 		game.Update(1.f/30.f);
 		game.RenderScene();
 
@@ -44,22 +51,22 @@ namespace GameCore
 	{
 		switch (message)
 		{
-		case WM_PAINT:
-		{
-						 PAINTSTRUCT ps;
-						 HDC hdc = BeginPaint( hWnd, &ps );
-						 EndPaint( hWnd, &ps );
-						 break;
-		}
+			case WM_PAINT:
+			{
+				PAINTSTRUCT ps;
+				HDC hdc = BeginPaint( hWnd, &ps );
+				EndPaint( hWnd, &ps );
+				break;
+			}
 
-		case WM_SIZE:
-			Graphics::Resize(wParam & 0xFFFFFF, lParam >> 16);
-		case WM_DESTROY:
-			PostQuitMessage( 0 );
-			break;
+			case WM_SIZE:
+				Graphics::Resize(wParam & 0xFFFFFF, lParam >> 16);
+			case WM_DESTROY:
+				PostQuitMessage(0);
+				break;
 
-		default:
-			return DefWindowProc( hWnd, message, wParam, lParam );
+			default:
+				return DefWindowProc(hWnd, message, wParam, lParam);
 		}
 
 		return 0;

@@ -23,6 +23,8 @@ namespace JustEngine
 		Vector4( ) : x( 0.0f ), y( 0.0f ), z( 0.0f ), w( 1.0f ) {}
 
 		Vector4( const Vector4 &other ) : x( other.x ), y( other.y ), z( other.z ), w( other.w ) {}
+		Vector4(float* values) : x(values[0]), y(values[1]), z(values[2]), w(values[3]) {}
+		Vector4(double* values) : x(values[0]), y(values[1]), z(values[2]), w(values[3]) {}
 
 		Vector4( float value ) : x( value ), y( value ), z( value ), w( 1 ) {}
 

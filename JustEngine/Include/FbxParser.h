@@ -2,9 +2,6 @@
 
 #include "pch.h"
 #include "Singleton.h"
-#include "fbxsdk.h"
-
-#pragma comment(lib, "libfbxsdk.lib")
 
 namespace JustEngine
 {
@@ -22,6 +19,9 @@ namespace JustEngine
 
 	class GameObject;
 	class Mesh;
+	class FbxScene;
+	class FbxManager;
+	class FbxNode;
 	class DLL_EXPORT FbxParser : public Singleton<FbxParser>
 	{
 		using GameObjectPtr = const std::shared_ptr<GameObject> &;

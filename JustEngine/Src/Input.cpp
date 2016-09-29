@@ -2,10 +2,10 @@
 #include "GameCore.h"
 
 #include <XInput.h>
-#pragma  comment(lib, "xinput_9_1_0.lib")
+#pragma comment(lib, "xinput9_1_0.lib")
 
 #include <dinput.h>
-#pragma  comment(lib, "dinput8.lib")
+#pragma comment(lib, "dinput8.lib")
 #pragma comment(lib, "dxguid.lib")
 
 namespace GameCore
@@ -13,7 +13,7 @@ namespace GameCore
 	extern HWND g_hWnd;
 }
 
-namespace JustEngine
+namespace GameCore
 {
 	#define NumInputs  static_cast<Input::KEY_TYPE>(InputKey::NumInputs)
 	bool sButton[ 2 ][ NumInputs ];
@@ -29,11 +29,15 @@ namespace JustEngine
 
 	bool Input::IsAnyPressed()
 	{
-	
+		return sButton[0][0];
 	}
 
 	bool Input::IsPressed(InputKey key)
 	{
-	
+		return sButton[0][ static_cast<Input::KEY_TYPE>(key) ];
+	}
+
+	void Input::Update() {
+
 	}
 }
